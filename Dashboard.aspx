@@ -33,7 +33,7 @@
 							<li><a href="#" onClick="switchView('Daily Management Dashboard')">Daily Management Dashboard</a></li>
                             <li class="divider"></li>
                             <li><a href="#" onClick="switchView('Node Activity')">Node Activity</a></li>
-							<li><a href="#" onClick="switchView('Bin Activity Report')">Bin Activity</a></li>
+							<li><a href="#" onClick="switchView('BlueBin Activity Report')">Bin Activity</a></li>
                             <li><a href="#" onClick="switchView('Bin Velocity Report')">Bin Velocity Report</a></li>
                             <li><a href="#" onClick="switchView('Slow Bin Report')">Slow Bin Report</a></li>
                             <li class="divider"></li>
@@ -55,7 +55,6 @@
                             <li><a href="#" onClick="switchView('Warehouse Value')">Warehouse Volume</a></li>
                             <li><a href="#" onClick="switchView('Warehouse Size')">Warehouse Size</a></li>
                             <li><a href="#" onClick="switchView('Pick Line Volume')">Pick Line Volume</a></li>
-                            <li><a href="#" onClick="switchView('Requisition Volume')">Requisition Volume*</a></li>
                             <li><a href="#" onClick="switchView('Overall Line Volume')">Overall Line Volume</a></li>
                             <li><a href="#" onClick="switchView('QCN Dashboard')">QCN Tracker</a></li>
               </ul>

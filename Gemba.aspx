@@ -20,7 +20,7 @@
         <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:Site_ConnectionString %>' SelectCommand="SELECT DISTINCT a.LocationName FROM bluebin.[DimLocation] a inner join gemba.GembaAuditNode b on rtrim(a.LocationID) = rtrim(b.LocationID) where b.Active = 1 and a.BlueBinFlag = 1"></asp:SqlDataSource>
         <asp:Button ID="SearchButton" runat="server" Text="Search" />
 
-</p>, 
+</p> 
         <p>
    <asp:GridView  CssClass="GridViewitem" ID="GembaAuditNodeGridView"  OnRowDataBound="OnRowDataBoundNode" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataSourceID="GembaAuditNodeSource" GridLines="Vertical" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="GembaAuditNodeID" RowStyle-HorizontalAlign="Center" RowStyle-Wrap="False" HeaderStyle-HorizontalAlign="Center">
         <AlternatingRowStyle BackColor="#DCDCDC" />

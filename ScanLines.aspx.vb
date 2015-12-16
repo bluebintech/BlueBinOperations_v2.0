@@ -413,33 +413,134 @@ Partial Class ScanLines
 
         If Len(Item1) > 0 Then
             cmd1.CommandText = "exec sp_InsertScanLine '" & NewScanBatchID & "','" & Item1 & "','" & Qty1 & "','1'"
-            cmd1.ExecuteNonQuery()
-            'Error1 = Convert.ToInt32(cmd1.ExecuteScalar())
+            'cmd1.ExecuteNonQuery()
+            Error1 = Convert.ToInt32(cmd1.ExecuteScalar())
             Select Case Error1
                 Case -1
                     Item1TB.BackColor = Color.Red
                     Item1TB.Text = "ItemID is Not valid!"
+                    Qty1TB.Text = ""
                     GoTo LastLine
                     Exit Select
             End Select
         End If
         If Len(Item2) > 0 Then
             cmd2.CommandText = "exec sp_InsertScanLine '" & NewScanBatchID & "','" & Item2 & "','" & Qty2 & "','2'"
-            cmd2.ExecuteNonQuery()
+            'cmd2.ExecuteNonQuery()
+            Error1 = Convert.ToInt32(cmd2.ExecuteScalar())
+            Select Case Error1
+                Case -1
+                    Item2TB.BackColor = Color.Red
+                    Item2TB.Text = "ItemID is Not valid!"
+                    Qty2TB.Text = ""
+                    GoTo LastLine
+                    Exit Select
+            End Select
         End If
         If Len(Item3) > 0 Then
             cmd3.CommandText = "exec sp_InsertScanLine '" & NewScanBatchID & "','" & Item3 & "','" & Qty3 & "','3'"
-            cmd3.ExecuteNonQuery()
+            'cmd3.ExecuteNonQuery()
+            Error1 = Convert.ToInt32(cmd3.ExecuteScalar())
+            Select Case Error1
+                Case -1
+                    Item3TB.BackColor = Color.Red
+                    Item3TB.Text = "ItemID is Not valid!"
+                    Qty3TB.Text = ""
+                    GoTo LastLine
+                    Exit Select
+            End Select
         End If
         If Len(Item4) > 0 Then
             cmd4.CommandText = "exec sp_InsertScanLine '" & NewScanBatchID & "','" & Item4 & "','" & Qty4 & "','4'"
-            cmd4.ExecuteNonQuery()
+            'cmd4.ExecuteNonQuery()
+            Error1 = Convert.ToInt32(cmd4.ExecuteScalar())
+            Select Case Error1
+                Case -1
+                    Item4TB.BackColor = Color.Red
+                    Item4TB.Text = "ItemID is Not valid!"
+                    Qty4TB.Text = ""
+                    GoTo LastLine
+                    Exit Select
+            End Select
         End If
         If Len(Item5) > 0 Then
             cmd5.CommandText = "exec sp_InsertScanLine '" & NewScanBatchID & "','" & Item5 & "','" & Qty5 & "','5'"
-            cmd5.ExecuteNonQuery()
+            'cmd5.ExecuteNonQuery()
+            Error1 = Convert.ToInt32(cmd5.ExecuteScalar())
+            Select Case Error1
+                Case -1
+                    Item5TB.BackColor = Color.Red
+                    Item5TB.Text = "ItemID is Not valid!"
+                    Qty5TB.Text = ""
+                    GoTo LastLine
+                    Exit Select
+            End Select
         End If
-
+        If Len(Item6) > 0 Then
+            cmd6.CommandText = "exec sp_InsertScanLine '" & NewScanBatchID & "','" & Item6 & "','" & Qty6 & "','6'"
+            'cmd6.ExecuteNonQuery()
+            Error1 = Convert.ToInt32(cmd6.ExecuteScalar())
+            Select Case Error1
+                Case -1
+                    Item6TB.BackColor = Color.Red
+                    Item6TB.Text = "ItemID is Not valid!"
+                    Qty6TB.Text = ""
+                    GoTo LastLine
+                    Exit Select
+            End Select
+        End If
+        If Len(Item7) > 0 Then
+            cmd7.CommandText = "exec sp_InsertScanLine '" & NewScanBatchID & "','" & Item7 & "','" & Qty7 & "','7'"
+            'cmd7.ExecuteNonQuery()
+            Error1 = Convert.ToInt32(cmd7.ExecuteScalar())
+            Select Case Error1
+                Case -1
+                    Item7TB.BackColor = Color.Red
+                    Item7TB.Text = "ItemID is Not valid!"
+                    Qty7TB.Text = ""
+                    GoTo LastLine
+                    Exit Select
+            End Select
+        End If
+        If Len(Item8) > 0 Then
+            cmd8.CommandText = "exec sp_InsertScanLine '" & NewScanBatchID & "','" & Item8 & "','" & Qty8 & "','8'"
+            'cmd8.ExecuteNonQuery()
+            Error1 = Convert.ToInt32(cmd8.ExecuteScalar())
+            Select Case Error1
+                Case -1
+                    Item8TB.BackColor = Color.Red
+                    Item8TB.Text = "ItemID is Not valid!"
+                    Qty8TB.Text = ""
+                    GoTo LastLine
+                    Exit Select
+            End Select
+        End If
+        If Len(Item9) > 0 Then
+            cmd9.CommandText = "exec sp_InsertScanLine '" & NewScanBatchID & "','" & Item9 & "','" & Qty9 & "','9'"
+            'cmd9.ExecuteNonQuery()
+            Error1 = Convert.ToInt32(cmd9.ExecuteScalar())
+            Select Case Error1
+                Case -1
+                    Item9TB.BackColor = Color.Red
+                    Item9TB.Text = "ItemID is Not valid!"
+                    Qty9TB.Text = ""
+                    GoTo LastLine
+                    Exit Select
+            End Select
+        End If
+        If Len(Item10) > 0 Then
+            cmd10.CommandText = "exec sp_InsertScanLine '" & NewScanBatchID & "','" & Item10 & "','" & Qty10 & "','10'"
+            'cmd10.ExecuteNonQuery()
+            Error1 = Convert.ToInt32(cmd10.ExecuteScalar())
+            Select Case Error1
+                Case -1
+                    Item10TB.BackColor = Color.Red
+                    Item10TB.Text = "ItemID is Not valid!"
+                    Qty10TB.Text = ""
+                    GoTo LastLine
+                    Exit Select
+            End Select
+        End If
 
         'MsgBox("New Gemba Saved For With score = " & TotalScore & "")
         Response.Redirect("~/Scans")

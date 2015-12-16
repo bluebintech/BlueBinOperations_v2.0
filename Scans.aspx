@@ -19,7 +19,7 @@
                         <asp:BoundField DataField="LocationID" HeaderText="LocationID" SortExpression="LocationID" />
                         <asp:BoundField DataField="LocationName" HeaderText="LocationName" SortExpression="LocationName" />
                         <asp:BoundField DataField="BinsScanned" HeaderText="BinsScanned" SortExpression="BinsScanned" />
-                        <asp:BoundField DataField="DateScanned" HeaderText="DateScanned" SortExpression="DateScanned" DataFormatString="{0:d}"  />
+                        <asp:BoundField DataField="DateScanned" HeaderText="DateScanned" SortExpression="DateScanned" DataFormatString="{0:g}"  />
             </Columns>
             <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
             <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />

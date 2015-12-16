@@ -58,6 +58,16 @@
             </p>
        
     </div>  
+        <div class="col-md-4">
+            <h2>Scanning</h2>
+            <p>
+                You can easily scan Bins into the Database for your BlueBin Solution and tracking in the BlueBin Dashboard.
+            </p>
+            <p>
+                <a class="btn btn-default" runat="server" href="~/Scans">Click Here &raquo;</a>
+            </p>
+       
+    </div>  
         
     </div>
 
