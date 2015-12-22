@@ -50,7 +50,9 @@
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download2">Operational Performance <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="download2">
-                			<li><a href="#" onClick="switchView('Supply Spend')">Supply Spend</a></li>
+                			<li><a href="#" onClick="switchView('Digital Huddle Board')">Digital Huddle Board*</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" onClick="switchView('Supply Spend')">Supply Spend</a></li>
                             <li><a href="#" onClick="switchView('Stat Calls')">Stat Calls</a></li>
                             <li><a href="#" onClick="switchView('Warehouse Value')">Warehouse Volume</a></li>
                             <li><a href="#" onClick="switchView('Warehouse Size')">Warehouse Size</a></li>
