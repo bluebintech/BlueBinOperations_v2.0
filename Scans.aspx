@@ -20,6 +20,7 @@
                         <asp:BoundField DataField="LocationName" HeaderText="LocationName" SortExpression="LocationName" />
                         <asp:BoundField DataField="BinsScanned" HeaderText="BinsScanned" SortExpression="BinsScanned" />
                         <asp:BoundField DataField="DateScanned" HeaderText="DateScanned" SortExpression="DateScanned" DataFormatString="{0:g}"  />
+                        <asp:BoundField DataField="Extracted" HeaderText="Extracted" SortExpression="Extracted" Visible="False" />
             </Columns>
             <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
             <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
@@ -50,6 +51,7 @@
                         <asp:BoundField DataField="ItemID" HeaderText="ItemID" SortExpression="ItemID" />
                         <asp:BoundField DataField="ItemDescription" HeaderText="Item Description" SortExpression="ItemDescription" />
                         <asp:BoundField DataField="Qty" HeaderText="Qty" SortExpression="Qty" />
+                        <asp:BoundField DataField="Extracted" HeaderText="Extracted" SortExpression="Extracted" Visible="False" />
                     </Columns>
                     <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
                     <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
