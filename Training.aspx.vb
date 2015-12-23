@@ -7,43 +7,59 @@ Imports System.Configuration
 
 Partial Class Training
     Inherits Page
+    Dim UserLogin As String = Page.User.Identity.Name.ToString()
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not Page.IsPostBack() Then
-            GridViewBlueBinResource.DataBind()
+            UpdaterTB.Text = UserLogin
+            GridViewBlueBinTraining.DataBind()
         End If
     End Sub
-    Protected Sub BlueBinResource_RowCommand(ByVal sender As System.Object, ByVal e As System.Web.UI.WebControls.GridViewCommandEventArgs)
-        If e.CommandName = "ResourceInsert" Then
-            Dim conn As New SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings("Site_ConnectionString").ConnectionString)
-            Dim ad As New SqlDataAdapter()
-            Dim cmd As New SqlCommand()
-            Dim txtLastName As TextBox = DirectCast(GridViewBlueBinResource.FooterRow.FindControl("LastName"), TextBox)
-            Dim txtFirstName As TextBox = DirectCast(GridViewBlueBinResource.FooterRow.FindControl("FirstName"), TextBox)
-            Dim txtMiddleName As TextBox = DirectCast(GridViewBlueBinResource.FooterRow.FindControl("MiddleName"), TextBox)
-            Dim txtLogin As TextBox = DirectCast(GridViewBlueBinResource.FooterRow.FindControl("Login"), TextBox)
-            Dim txtEmail As TextBox = DirectCast(GridViewBlueBinResource.FooterRow.FindControl("Email"), TextBox)
-            Dim txtTitle As TextBox = DirectCast(GridViewBlueBinResource.FooterRow.FindControl("Title"), TextBox)
-            Dim txtPhone As TextBox = DirectCast(GridViewBlueBinResource.FooterRow.FindControl("Phone"), TextBox)
-            Dim txtCell As TextBox = DirectCast(GridViewBlueBinResource.FooterRow.FindControl("Cell"), TextBox)
+    Protected Sub BlueBinTraining_RowCommand(ByVal sender As System.Object, ByVal e As System.Web.UI.WebControls.GridViewCommandEventArgs)
+        If e.CommandName = "TrainingInsert" Then
+            Dim txtResourceName As String = TryCast(GridViewBlueBinTraining.FooterRow.FindControl("ResourceNameDD"), DropDownList).SelectedItem.Value
+            Dim txtForm3000 As String = TryCast(GridViewBlueBinTraining.FooterRow.FindControl("Form3000DDF"), DropDownList).SelectedItem.Value
+            Dim txtForm3001 As String = TryCast(GridViewBlueBinTraining.FooterRow.FindControl("Form3001DDF"), DropDownList).SelectedItem.Value
+            Dim txtForm3002 As String = TryCast(GridViewBlueBinTraining.FooterRow.FindControl("Form3002DDF"), DropDownList).SelectedItem.Value
+            Dim txtForm3003 As String = TryCast(GridViewBlueBinTraining.FooterRow.FindControl("Form3003DDF"), DropDownList).SelectedItem.Value
+            Dim txtForm3004 As String = TryCast(GridViewBlueBinTraining.FooterRow.FindControl("Form3004DDF"), DropDownList).SelectedItem.Value
+            Dim txtForm3005 As String = TryCast(GridViewBlueBinTraining.FooterRow.FindControl("Form3005DDF"), DropDownList).SelectedItem.Value
+            Dim txtForm3006 As String = TryCast(GridViewBlueBinTraining.FooterRow.FindControl("Form3006DDF"), DropDownList).SelectedItem.Value
+            Dim txtForm3007 As String = TryCast(GridViewBlueBinTraining.FooterRow.FindControl("Form3007DDF"), DropDownList).SelectedItem.Value
+            Dim txtForm3008 As String = TryCast(GridViewBlueBinTraining.FooterRow.FindControl("Form3008DDF"), DropDownList).SelectedItem.Value
+            Dim txtForm3009 As String = TryCast(GridViewBlueBinTraining.FooterRow.FindControl("Form3009DDF"), DropDownList).SelectedItem.Value
+            Dim txtForm3010 As String = TryCast(GridViewBlueBinTraining.FooterRow.FindControl("Form3010DDF"), DropDownList).SelectedItem.Value
 
-            cmd.Connection = conn
-            cmd.CommandText = "exec sp_InsertBlueBinResource 
-                                '" + txtLastName.Text & "',
-                                    '" + txtFirstName.Text & "',
-                                        '" + txtMiddleName.Text & "',
-                                                    '" + txtLogin.Text & "',
-                                                        '" + txtEmail.Text & "',
-                                                                    '" + txtPhone.Text & "',
-                                                                            '" + txtCell.Text & "',
-                                                                                    '" + txtTitle.Text & "'"
-            conn.Open()
-            cmd.ExecuteNonQuery()
-            conn.Close()
-            GridViewBlueBinResource.DataBind()
+            Dim constr As String = ConfigurationManager.ConnectionStrings("Site_ConnectionString").ConnectionString
+            Using con As New SqlConnection(constr)
+                Using cmd As New SqlCommand("sp_InsertBlueBinTraining")
+                    cmd.CommandType = CommandType.StoredProcedure
+                    cmd.Parameters.AddWithValue("@BlueBinResource", txtResourceName)
+                    cmd.Parameters.AddWithValue("@Form3000", txtForm3000)
+                    cmd.Parameters.AddWithValue("@Form3001", txtForm3001)
+                    cmd.Parameters.AddWithValue("@Form3002", txtForm3002)
+                    cmd.Parameters.AddWithValue("@Form3003", txtForm3003)
+                    cmd.Parameters.AddWithValue("@Form3004", txtForm3004)
+                    cmd.Parameters.AddWithValue("@Form3005", txtForm3005)
+                    cmd.Parameters.AddWithValue("@Form3006", txtForm3006)
+                    cmd.Parameters.AddWithValue("@Form3007", txtForm3007)
+                    cmd.Parameters.AddWithValue("@Form3008", txtForm3008)
+                    cmd.Parameters.AddWithValue("@Form3009", txtForm3009)
+                    cmd.Parameters.AddWithValue("@Form3010", txtForm3010)
+                    cmd.Parameters.AddWithValue("@Updater", UserLogin)
+                    cmd.Connection = con
+                    con.Open()
+                    cmd.ExecuteNonQuery()
+                    con.Close()
+                End Using
+            End Using
+
+            GridViewBlueBinTraining.DataBind()
         End If
+
+
     End Sub
 
-    Protected Sub ExportToExcelResouces(sender As Object, e As EventArgs)
+    Protected Sub ExportToExcelTraining(sender As Object, e As EventArgs)
         Response.Clear()
         Response.Buffer = True
         Response.AddHeader("content-disposition", "attachment;filename=TrainingExport.xls")
@@ -53,23 +69,23 @@ Partial Class Training
             Dim hw As New HtmlTextWriter(sw)
 
             'To Export all pages
-            GridViewBlueBinResource.AllowPaging = False
-            GridViewBlueBinResource.DataBind()
-            GridViewBlueBinResource.HeaderRow.BackColor = Color.White
-            GridViewBlueBinResource.HeaderRow.Cells(0).Visible = False
-            GridViewBlueBinResource.FooterRow.Visible = False
+            GridViewBlueBinTraining.AllowPaging = False
+            GridViewBlueBinTraining.DataBind()
+            GridViewBlueBinTraining.HeaderRow.BackColor = Color.White
+            GridViewBlueBinTraining.HeaderRow.Cells(0).Visible = False
+            GridViewBlueBinTraining.FooterRow.Visible = False
 
-            For Each cell As TableCell In GridViewBlueBinResource.HeaderRow.Cells
-                cell.BackColor = GridViewBlueBinResource.HeaderStyle.BackColor
+            For Each cell As TableCell In GridViewBlueBinTraining.HeaderRow.Cells
+                cell.BackColor = GridViewBlueBinTraining.HeaderStyle.BackColor
             Next
-            For Each row As GridViewRow In GridViewBlueBinResource.Rows
+            For Each row As GridViewRow In GridViewBlueBinTraining.Rows
                 row.BackColor = Color.White
                 row.Cells(0).Visible = False
                 For Each cell As TableCell In row.Cells
                     If row.RowIndex Mod 2 = 0 Then
-                        cell.BackColor = GridViewBlueBinResource.AlternatingRowStyle.BackColor
+                        cell.BackColor = GridViewBlueBinTraining.AlternatingRowStyle.BackColor
                     Else
-                        cell.BackColor = GridViewBlueBinResource.RowStyle.BackColor
+                        cell.BackColor = GridViewBlueBinTraining.RowStyle.BackColor
                     End If
                     cell.CssClass = "textmode"
 
@@ -77,7 +93,7 @@ Partial Class Training
                 Next
             Next
 
-            GridViewBlueBinResource.RenderControl(hw)
+            GridViewBlueBinTraining.RenderControl(hw)
             'style to format numbers to string
             Dim style As String = "<style> .textmode { } </style>"
             Response.Write(Regex.Replace(sw.ToString(), "(<a[^>]*>)|(</a>)", " ", RegexOptions.IgnoreCase))

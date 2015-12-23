@@ -3,11 +3,11 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     
    
-<asp:Table ID="PageTable" runat="server" Width="500px" align = "center">
+<asp:Table ID="PageTable" runat="server" Width="500px">
 <asp:TableRow><asp:TableCell><h2><%: Title %></h2>
-    <p>Welcome to the Resource Information for your BlueBin Operations Site.  </p>
-    <p>In your Gemba Audit Forms the below Resources will be available as potential Auditers and Techs.  
-        In your QCNs Forms, the below Resources will be available to either Assign or designate as the Reporter of the QCN. </p>
+    <p>Welcome to the Training Tracker for your BlueBin Operations Site.  </p>
+    <p>Below are Identified Resources who are going through training on various forms.  
+        You can insert or update the status of the training using the formes below. </p>
               </asp:TableCell></asp:TableRow>
 <asp:TableRow>
     <asp:TableCell Width="500px"  >
@@ -15,134 +15,355 @@
             <br />
             <asp:TextBox ID="SearchBox" runat="server" Width="150px"></asp:TextBox>
             &nbsp;<asp:Button ID="LinkButton1" runat="server" CausesValidation="False" Text="Search Name"></asp:Button>
+            <asp:TextBox ID="UpdaterTB" runat="server" ReadOnly="True" Visible="False"></asp:TextBox>
 </p>
         <p>
-        <asp:GridView ID="GridViewBlueBinResource" OnRowCommand="BlueBinResource_RowCommand" CssClass="GridViewitem" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="BlueBinResourceSource1" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" AutoGenerateColumns="False" DataKeyNames="BlueBinResourceID" PageSize="15" ShowFooter="True" EditRowStyle-Width="50px" EditRowStyle-CssClass="ResourceRowWidth">
+            
+        <asp:GridView ID="GridViewBlueBinTraining" OnRowCommand="BlueBinTraining_RowCommand" CssClass="GridViewitem" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="BlueBinTrainingSource1" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" AutoGenerateColumns="False" DataKeyNames="BlueBinTrainingID" PageSize="15" ShowFooter="True" EditRowStyle-Width="50px" EditRowStyle-CssClass="ResourceRowWidth">
             <AlternatingRowStyle BackColor="#DCDCDC"></AlternatingRowStyle>
             <Columns>
+                
                 <asp:TemplateField ShowHeader="False">
                     <EditItemTemplate>
-                        <asp:Button runat="server" Text="Update" CommandName="Update" CausesValidation="True" ValidationGroup="Edit" ID="Button1"></asp:Button>&nbsp;<asp:Button runat="server" Text="Cancel" CommandName="Cancel" CausesValidation="False" ID="Button2"></asp:Button>
+                        <asp:Button runat="server" Text="Update" CommandName="Update" CausesValidation="True" ValidationGroup="Edit" ID="Button1"></asp:Button>
+                        <asp:Button runat="server" Text="Delete" CommandName="Delete" CausesValidation="False" ID="Button3"></asp:Button>
+                        <asp:Button runat="server" Text="Cancel" CommandName="Cancel" CausesValidation="False" ID="Button2"></asp:Button>
                     </EditItemTemplate>
                     <ItemTemplate>
                         <asp:Button runat="server" Text="Edit" CommandName="Edit" CausesValidation="False" ID="Button1"></asp:Button>
                     </ItemTemplate>
-                    <FooterTemplate><asp:LinkButton ID="ResourceInsert" runat="server" Text="Add" CommandName="ResourceInsert"></asp:LinkButton></FooterTemplate>
+                    <FooterTemplate><asp:LinkButton ID="TrainingInsert" runat="server" Text="Add" CommandName="TrainingInsert"></asp:LinkButton></FooterTemplate>
                 </asp:TemplateField>
 
-                <asp:TemplateField HeaderText="ID" InsertVisible="False" SortExpression="BlueBinResourceID">
+
+                <asp:TemplateField HeaderText="BlueBinTrainingID" InsertVisible="False" Visible="false" SortExpression="BlueBinTrainingID">
                     <EditItemTemplate>
-                        <asp:Label runat="server" Text='<%# Eval("BlueBinResourceID") %>' ID="Label1"></asp:Label>
+                        <asp:Label runat="server" Text='<%# Eval("BlueBinTrainingID") %>' ID="LabelTrainingE"></asp:Label>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label runat="server" Text='<%# Bind("BlueBinResourceID") %>' ID="Label1"></asp:Label>
+                        <asp:Label runat="server" Text='<%# Bind("BlueBinTrainingID") %>' ID="LabelTrainingI"></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="LastName" SortExpression="LastName">
+                
+                <asp:TemplateField HeaderText="BlueBinResourceID" InsertVisible="False" Visible="false" SortExpression="BlueBinResourceID">
                     <EditItemTemplate>
-                        <asp:TextBox runat="server" Text='<%# Bind("LastName") %>' ID="LastNameEdit" Columns="5"></asp:TextBox><asp:RequiredFieldValidator ValidationGroup="Edit" ID="RequiredFieldValidatorLastName" runat="server" ControlToValidate="LastNameEdit" Display="Dynamic" ForeColor="Red" Font-Size="X-Small">REQUIRED</asp:RequiredFieldValidator>
+                        <asp:Label runat="server" Text='<%# Eval("BlueBinResourceID") %>' ID="LabelResourceE"></asp:Label>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label runat="server" Text='<%# Bind("LastName") %>' ID="Label2"></asp:Label>
+                        <asp:Label runat="server" Text='<%# Bind("BlueBinResourceID") %>' ID="LabelResourceEI"></asp:Label>
                     </ItemTemplate>
-
-                    <FooterTemplate><asp:TextBox runat="server" ID="LastName" Columns="5"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidatorLastName" runat="server" ControlToValidate="LastName" Display="Dynamic" ForeColor="Red" Font-Size="X-Small">REQUIRED</asp:RequiredFieldValidator></FooterTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="FirstName" SortExpression="FirstName">
-                    <EditItemTemplate>
-                        <asp:TextBox runat="server" Text='<%# Bind("FirstName") %>' ID="FirstNameEdit" Columns="5"></asp:TextBox><asp:RequiredFieldValidator ValidationGroup="Edit" ID="RequiredFieldValidatorFirstName" runat="server" ControlToValidate="FirstNameEdit" Display="Dynamic" ForeColor="Red" Font-Size="X-Small">REQUIRED</asp:RequiredFieldValidator>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label runat="server" Text='<%# Bind("FirstName") %>' ID="Label3"></asp:Label>
-                    </ItemTemplate>
-
-                    <FooterTemplate><asp:TextBox runat="server" ID="FirstName" Columns="5"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidatorFirstName" runat="server" ControlToValidate="FirstName" Display="Dynamic" ForeColor="Red" Font-Size="X-Small">REQUIRED</asp:RequiredFieldValidator></FooterTemplate>
-
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="MiddleName" SortExpression="MiddleName">
-                    <EditItemTemplate>
-                        <asp:TextBox runat="server" Text='<%# Bind("MiddleName") %>' ID="TextBox3" Columns="5"></asp:TextBox>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label runat="server" Text='<%# Bind("MiddleName") %>' ID="Label4"></asp:Label>
-                    </ItemTemplate>
-
-                    <FooterTemplate><asp:TextBox runat="server" ID="MiddleName" Columns="5"></asp:TextBox></FooterTemplate>
-
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="Login" SortExpression="Login">
-                    <EditItemTemplate>
-                        <asp:TextBox runat="server" Text='<%# Bind("Login") %>' ID="LoginEdit" Columns="5"></asp:TextBox><asp:RequiredFieldValidator ValidationGroup="Edit" ID="RequiredFieldValidatorLogin" runat="server" ControlToValidate="LoginEdit" Display="Dynamic" ForeColor="Red" Font-Size="X-Small">REQUIRED</asp:RequiredFieldValidator>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label runat="server" Text='<%# Bind("Login") %>' ID="Label5"></asp:Label>
-                    </ItemTemplate>
-
-                    <FooterTemplate><asp:TextBox runat="server" ID="Login" Columns="5"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidatorLogin" runat="server" ControlToValidate="Login" Display="Dynamic" ForeColor="Red" Font-Size="X-Small">REQUIRED</asp:RequiredFieldValidator></FooterTemplate>
-
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="Email" SortExpression="Email">
-                    <EditItemTemplate>
-                        <asp:TextBox runat="server" Text='<%# Bind("Email") %>' ID="TextBox5"></asp:TextBox>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label runat="server" Text='<%# Bind("Email") %>' ID="Label6"></asp:Label>
-                    </ItemTemplate>
-                        <FooterTemplate><asp:TextBox runat="server" ID="Email"></asp:TextBox></FooterTemplate>
-
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="Title" SortExpression="Title">
-                    <EditItemTemplate>
-                        <asp:TextBox runat="server" Text='<%# Bind("Title") %>' ID="TextBox6" Columns="5"></asp:TextBox>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label runat="server" Text='<%# Bind("Title") %>' ID="Label7"></asp:Label>
-                    </ItemTemplate>
-
-                    <FooterTemplate><asp:TextBox runat="server" ID="Title" Columns="5"></asp:TextBox></FooterTemplate>
-
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="Phone" SortExpression="Phone">
-                    <EditItemTemplate>
-                        <asp:TextBox runat="server" Text='<%# Bind("Phone") %>' ID="TextBox7" Columns="5"></asp:TextBox>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label runat="server" Text='<%# Bind("Phone") %>' ID="Label8"></asp:Label>
-                    </ItemTemplate>
-
-                    <FooterTemplate><asp:TextBox runat="server" ID="Phone" Columns="5"></asp:TextBox></FooterTemplate>
-
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="Cell" SortExpression="Cell">
-                    <EditItemTemplate>
-                        <asp:TextBox runat="server" Text='<%# Bind("Cell") %>' ID="TextBox8"></asp:TextBox>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label runat="server" Text='<%# Bind("Cell") %>' ID="Label9"></asp:Label>
-                    </ItemTemplate>
-
-                    <ControlStyle CssClass="resourcewide"></ControlStyle>
- 
-                    <FooterTemplate><asp:TextBox runat="server" ID="Cell" Columns="5"></asp:TextBox></FooterTemplate>
                 </asp:TemplateField>
 
-                <asp:TemplateField HeaderText="Active" SortExpression="Active">
+                <asp:TemplateField HeaderText="ResourceName" SortExpression="ResourceName">
                 <EditItemTemplate>
-                    <asp:DropDownList runat="server"  AutoPostBack="False" ID="ResourceActiveDD" SelectedValue=<%#Bind("Active")%>>
-                        <asp:ListItem Value="1">Yes</asp:ListItem>
-                        <asp:ListItem Value="0">No</asp:ListItem>
+                    <asp:Label runat="server" Text='<%# Eval("ResourceName") %>' ID="LabelResourceNameE"></asp:Label>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label runat="server" Text='<%# Bind("ResourceName") %>' ID="ITResourceNameL"></asp:Label>
+                </ItemTemplate>
+                <FooterTemplate>
+                    <asp:DropDownList runat="server" ID="ResourceNameDD" SelectedValue='<%# Bind("ResourceName") %>' DataSourceID="ResourceNameDataSource" DataTextField="ResourceName" DataValueField="BlueBinResourceID">
+                    </asp:DropDownList>
+                    <asp:SqlDataSource runat="server" ID="ResourceNameDataSource" ConnectionString='<%$ ConnectionStrings:Site_ConnectionString %>' SelectCommand="SELECT DISTINCT [BlueBinResourceID],LastName + ', ' + FirstName as [ResourceName] FROM bluebin.[BlueBinResource] where BlueBinResourceID not in (select BlueBinResourceID from bluebin.BlueBinTraining where Active = 1)"></asp:SqlDataSource>
+                 </FooterTemplate>
+                <ItemStyle Wrap="False" Width="60px"></ItemStyle>
+            </asp:TemplateField>
+          
+                <asp:TemplateField HeaderText="Title" InsertVisible="False" SortExpression="Title">
+                    <EditItemTemplate>
+                        <asp:Label runat="server" Text='<%# Bind("Title") %>' ID="LabelTitleE"></asp:Label>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label runat="server" Text='<%# Bind("Title") %>' ID="LabelTitleI"></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+
+                <asp:TemplateField>
+                <HeaderTemplate>
+                    <asp:HyperLink runat="server" NavigateUrl="~/BlueBinDocuments/3000 - Replenishing BlueBin Technology Nodes.pdf" target="_blank" Text="Form3000"> </asp:HyperLink>
+                </HeaderTemplate>
+                <EditItemTemplate>
+                    <asp:DropDownList runat="server"  AutoPostBack="False" ID="Form3000DD" SelectedValue=<%#Bind("Form3000")%>>
+                        <asp:ListItem Value="No">No</asp:ListItem>
+                        <asp:ListItem Value="Trained">Trained</asp:ListItem>
+                        <asp:ListItem Value="Demo">Demo</asp:ListItem>
+                        <asp:ListItem Value="Teach">Teach</asp:ListItem>
                     </asp:DropDownList>
                 </EditItemTemplate>
                 <ItemTemplate>
-                    <asp:Label runat="server" Text='<%# Bind("ActiveName") %>' ID="LabelResource"></asp:Label>
+                    <asp:Label runat="server" Text='<%# Bind("Form3000") %>' ID="LabelForm3000"></asp:Label>
                 </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="Last Updated" InsertVisible="False" SortExpression="LastUpdated">
+                <FooterTemplate>
+                    <asp:DropDownList runat="server"  AutoPostBack="False" ID="Form3000DDF" SelectedValue=<%#Bind("Form3000")%>>
+                        <asp:ListItem Value="No">No</asp:ListItem>
+                        <asp:ListItem Value="Trained">Trained</asp:ListItem>
+                        <asp:ListItem Value="Demo">Demo</asp:ListItem>
+                        <asp:ListItem Value="Teach">Teach</asp:ListItem>
+                    </asp:DropDownList>
+                </FooterTemplate>
+                </asp:TemplateField>
+
+<asp:TemplateField><HeaderTemplate>
+<asp:HyperLink runat="server" NavigateUrl="/BlueBinDocuments/3001 - BlueBin Stage Operations.pdf" target="_blank" Text="Form3001"> </asp:HyperLink>
+</HeaderTemplate>
                 <EditItemTemplate>
-                    <asp:Label runat="server" Text='<%# Eval("LastUpdated", "{0:d}") %>' ID="LabelEditResource"></asp:Label>
+                    <asp:DropDownList runat="server"  AutoPostBack="False" ID="Form3001DD" SelectedValue=<%#Bind("Form3001")%>>
+                        <asp:ListItem Value="No">No</asp:ListItem>
+                        <asp:ListItem Value="Trained">Trained</asp:ListItem>
+                        <asp:ListItem Value="Demo">Demo</asp:ListItem>
+                        <asp:ListItem Value="Teach">Teach</asp:ListItem>
+                    </asp:DropDownList>
                 </EditItemTemplate>
                 <ItemTemplate>
-                    <asp:Label runat="server" Text='<%# Bind("LastUpdated", "{0:d}") %>' ID="LabelItemResource"></asp:Label>
+                    <asp:Label runat="server" Text='<%# Bind("Form3001") %>' ID="LabelForm3001"></asp:Label>
+                </ItemTemplate>
+                <FooterTemplate>
+                    <asp:DropDownList runat="server"  AutoPostBack="False" ID="Form3001DDF" SelectedValue=<%#Bind("Form3001")%>>
+                        <asp:ListItem Value="No">No</asp:ListItem>
+                        <asp:ListItem Value="Trained">Trained</asp:ListItem>
+                        <asp:ListItem Value="Demo">Demo</asp:ListItem>
+                        <asp:ListItem Value="Teach">Teach</asp:ListItem>
+                    </asp:DropDownList>
+                </FooterTemplate>
+                </asp:TemplateField>
+
+<asp:TemplateField><HeaderTemplate>
+<asp:HyperLink runat="server" NavigateUrl="/BlueBinDocuments/3002 - Filling BBT Orders - Art of Bin Fill.pdf" target="_blank" Text="Form3002"> </asp:HyperLink>
+</HeaderTemplate>
+                <EditItemTemplate>
+                    <asp:DropDownList runat="server"  AutoPostBack="False" ID="Form3002DD" SelectedValue=<%#Bind("Form3002")%>>
+                        <asp:ListItem Value="No">No</asp:ListItem>
+                        <asp:ListItem Value="Trained">Trained</asp:ListItem>
+                        <asp:ListItem Value="Demo">Demo</asp:ListItem>
+                        <asp:ListItem Value="Teach">Teach</asp:ListItem>
+                    </asp:DropDownList>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label runat="server" Text='<%# Bind("Form3002") %>' ID="LabelForm3002"></asp:Label>
+                </ItemTemplate>
+                <FooterTemplate>
+                    <asp:DropDownList runat="server"  AutoPostBack="False" ID="Form3002DDF" SelectedValue=<%#Bind("Form3002")%>>
+                        <asp:ListItem Value="No">No</asp:ListItem>
+                        <asp:ListItem Value="Trained">Trained</asp:ListItem>
+                        <asp:ListItem Value="Demo">Demo</asp:ListItem>
+                        <asp:ListItem Value="Teach">Teach</asp:ListItem>
+                    </asp:DropDownList>
+                </FooterTemplate>
+                </asp:TemplateField>
+
+<asp:TemplateField><HeaderTemplate>
+<asp:HyperLink runat="server" NavigateUrl="/BlueBinDocuments/3003 - Managing BlueBin Stock-Outs.pdf" target="_blank" Text="Form3003"> </asp:HyperLink>
+</HeaderTemplate>
+                <EditItemTemplate>
+                    <asp:DropDownList runat="server"  AutoPostBack="False" ID="Form3003DD" SelectedValue=<%#Bind("Form3003")%>>
+                        <asp:ListItem Value="No">No</asp:ListItem>
+                        <asp:ListItem Value="Trained">Trained</asp:ListItem>
+                        <asp:ListItem Value="Demo">Demo</asp:ListItem>
+                        <asp:ListItem Value="Teach">Teach</asp:ListItem>
+                    </asp:DropDownList>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label runat="server" Text='<%# Bind("Form3003") %>' ID="LabelForm3003"></asp:Label>
+                </ItemTemplate>
+                <FooterTemplate>
+                    <asp:DropDownList runat="server"  AutoPostBack="False" ID="Form3003DDF" SelectedValue=<%#Bind("Form3003")%>>
+                        <asp:ListItem Value="No">No</asp:ListItem>
+                        <asp:ListItem Value="Trained">Trained</asp:ListItem>
+                        <asp:ListItem Value="Demo">Demo</asp:ListItem>
+                        <asp:ListItem Value="Teach">Teach</asp:ListItem>
+                    </asp:DropDownList>
+                </FooterTemplate>
+                </asp:TemplateField>
+
+<asp:TemplateField><HeaderTemplate>
+<asp:HyperLink runat="server" NavigateUrl="/BlueBinDocuments/3004 - BlueBin Kanban & Stage Maintenance.pdf" target="_blank" Text="Form3004"> </asp:HyperLink>
+</HeaderTemplate>
+                <EditItemTemplate>
+                    <asp:DropDownList runat="server"  AutoPostBack="False" ID="Form3004DD" SelectedValue=<%#Bind("Form3004")%>>
+                        <asp:ListItem Value="No">No</asp:ListItem>
+                        <asp:ListItem Value="Trained">Trained</asp:ListItem>
+                        <asp:ListItem Value="Demo">Demo</asp:ListItem>
+                        <asp:ListItem Value="Teach">Teach</asp:ListItem>
+                    </asp:DropDownList>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label runat="server" Text='<%# Bind("Form3004") %>' ID="LabelForm3004"></asp:Label>
+                </ItemTemplate>
+                <FooterTemplate>
+                    <asp:DropDownList runat="server"  AutoPostBack="False" ID="Form3004DDF" SelectedValue=<%#Bind("Form3004")%>>
+                        <asp:ListItem Value="No">No</asp:ListItem>
+                        <asp:ListItem Value="Trained">Trained</asp:ListItem>
+                        <asp:ListItem Value="Demo">Demo</asp:ListItem>
+                        <asp:ListItem Value="Teach">Teach</asp:ListItem>
+                    </asp:DropDownList>
+                </FooterTemplate>
+                </asp:TemplateField>
+
+<asp:TemplateField><HeaderTemplate>
+<asp:HyperLink runat="server" NavigateUrl="/BlueBinDocuments/3005 - BlueBin Stage Audit Process.pdf" target="_blank" Text="Form3005"> </asp:HyperLink>
+</HeaderTemplate>
+                <EditItemTemplate>
+                    <asp:DropDownList runat="server"  AutoPostBack="False" ID="Form3005DD" SelectedValue=<%#Bind("Form3005")%>>
+                        <asp:ListItem Value="No">No</asp:ListItem>
+                        <asp:ListItem Value="Trained">Trained</asp:ListItem>
+                        <asp:ListItem Value="Demo">Demo</asp:ListItem>
+                        <asp:ListItem Value="Teach">Teach</asp:ListItem>
+                    </asp:DropDownList>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label runat="server" Text='<%# Bind("Form3005") %>' ID="LabelForm3005"></asp:Label>
+                </ItemTemplate>
+                <FooterTemplate>
+                    <asp:DropDownList runat="server"  AutoPostBack="False" ID="Form3005DDF" SelectedValue=<%#Bind("Form3005")%>>
+                        <asp:ListItem Value="No">No</asp:ListItem>
+                        <asp:ListItem Value="Trained">Trained</asp:ListItem>
+                        <asp:ListItem Value="Demo">Demo</asp:ListItem>
+                        <asp:ListItem Value="Teach">Teach</asp:ListItem>
+                    </asp:DropDownList>
+                </FooterTemplate>
+                </asp:TemplateField>
+
+<asp:TemplateField><HeaderTemplate>
+<asp:HyperLink runat="server" NavigateUrl="/BlueBinDocuments/3006 - Stage Audit Form.pdf" target="_blank" Text="Form3006"> </asp:HyperLink>
+</HeaderTemplate>
+                <EditItemTemplate>
+                    <asp:DropDownList runat="server"  AutoPostBack="False" ID="Form3006DD" SelectedValue=<%#Bind("Form3006")%>>
+                        <asp:ListItem Value="No">No</asp:ListItem>
+                        <asp:ListItem Value="Trained">Trained</asp:ListItem>
+                        <asp:ListItem Value="Demo">Demo</asp:ListItem>
+                        <asp:ListItem Value="Teach">Teach</asp:ListItem>
+                    </asp:DropDownList>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label runat="server" Text='<%# Bind("Form3006") %>' ID="LabelForm3006"></asp:Label>
+                </ItemTemplate>
+                <FooterTemplate>
+                    <asp:DropDownList runat="server"  AutoPostBack="False" ID="Form3006DDF" SelectedValue=<%#Bind("Form3006")%>>
+                        <asp:ListItem Value="No">No</asp:ListItem>
+                        <asp:ListItem Value="Trained">Trained</asp:ListItem>
+                        <asp:ListItem Value="Demo">Demo</asp:ListItem>
+                        <asp:ListItem Value="Teach">Teach</asp:ListItem>
+                    </asp:DropDownList>
+                </FooterTemplate>
+                </asp:TemplateField>
+
+<asp:TemplateField><HeaderTemplate>
+<asp:HyperLink runat="server" NavigateUrl="/BlueBinDocuments/3007 - BlueBIn Daily Health Audit Process.pdf" target="_blank" Text="Form3007"> </asp:HyperLink>
+</HeaderTemplate>
+                <EditItemTemplate>
+                    <asp:DropDownList runat="server"  AutoPostBack="False" ID="Form3007DD" SelectedValue=<%#Bind("Form3007")%>>
+                        <asp:ListItem Value="No">No</asp:ListItem>
+                        <asp:ListItem Value="Trained">Trained</asp:ListItem>
+                        <asp:ListItem Value="Demo">Demo</asp:ListItem>
+                        <asp:ListItem Value="Teach">Teach</asp:ListItem>
+                    </asp:DropDownList>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label runat="server" Text='<%# Bind("Form3007") %>' ID="LabelForm3007"></asp:Label>
+                </ItemTemplate>
+                <FooterTemplate>
+                    <asp:DropDownList runat="server"  AutoPostBack="False" ID="Form3007DDF" SelectedValue=<%#Bind("Form3007")%>>
+                        <asp:ListItem Value="No">No</asp:ListItem>
+                        <asp:ListItem Value="Trained">Trained</asp:ListItem>
+                        <asp:ListItem Value="Demo">Demo</asp:ListItem>
+                        <asp:ListItem Value="Teach">Teach</asp:ListItem>
+                    </asp:DropDownList>
+                </FooterTemplate>
+                </asp:TemplateField>
+
+<asp:TemplateField><HeaderTemplate>
+<asp:HyperLink runat="server" NavigateUrl="/BlueBinDocuments/3008 - BBT Weekly Health Checklist.pdf" target="_blank" Text="Form3008"> </asp:HyperLink>
+</HeaderTemplate>
+                <EditItemTemplate>
+                    <asp:DropDownList runat="server"  AutoPostBack="False" ID="Form3008DD" SelectedValue=<%#Bind("Form3008")%>>
+                        <asp:ListItem Value="No">No</asp:ListItem>
+                        <asp:ListItem Value="Trained">Trained</asp:ListItem>
+                        <asp:ListItem Value="Demo">Demo</asp:ListItem>
+                        <asp:ListItem Value="Teach">Teach</asp:ListItem>
+                    </asp:DropDownList>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label runat="server" Text='<%# Bind("Form3008") %>' ID="LabelForm3008"></asp:Label>
+                </ItemTemplate>
+                <FooterTemplate>
+                    <asp:DropDownList runat="server"  AutoPostBack="False" ID="Form3008DDF" SelectedValue=<%#Bind("Form3008")%>>
+                        <asp:ListItem Value="No">No</asp:ListItem>
+                        <asp:ListItem Value="Trained">Trained</asp:ListItem>
+                        <asp:ListItem Value="Demo">Demo</asp:ListItem>
+                        <asp:ListItem Value="Teach">Teach</asp:ListItem>
+                    </asp:DropDownList>
+                </FooterTemplate>
+                </asp:TemplateField>
+
+<asp:TemplateField><HeaderTemplate>
+<asp:HyperLink runat="server" NavigateUrl="/BlueBinDocuments/3009 - BBT Orange Cone Process.pdf" target="_blank" Text="Form3009"> </asp:HyperLink>
+</HeaderTemplate>
+                <EditItemTemplate>
+                    <asp:DropDownList runat="server"  AutoPostBack="False" ID="Form3009DD" SelectedValue=<%#Bind("Form3009")%>>
+                        <asp:ListItem Value="No">No</asp:ListItem>
+                        <asp:ListItem Value="Trained">Trained</asp:ListItem>
+                        <asp:ListItem Value="Demo">Demo</asp:ListItem>
+                        <asp:ListItem Value="Teach">Teach</asp:ListItem>
+                    </asp:DropDownList>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label runat="server" Text='<%# Bind("Form3009") %>' ID="LabelForm3009"></asp:Label>
+                </ItemTemplate>
+                <FooterTemplate>
+                    <asp:DropDownList runat="server"  AutoPostBack="False" ID="Form3009DDF" SelectedValue=<%#Bind("Form3009")%>>
+                        <asp:ListItem Value="No">No</asp:ListItem>
+                        <asp:ListItem Value="Trained">Trained</asp:ListItem>
+                        <asp:ListItem Value="Demo">Demo</asp:ListItem>
+                        <asp:ListItem Value="Teach">Teach</asp:ListItem>
+                    </asp:DropDownList>
+                </FooterTemplate>
+                </asp:TemplateField>
+
+<asp:TemplateField><HeaderTemplate>
+<asp:HyperLink runat="server" NavigateUrl="/BlueBinDocuments/3010 - QCN Process.pdf" target="_blank" Text="Form30010"> </asp:HyperLink>
+</HeaderTemplate>
+                <EditItemTemplate>
+                    <asp:DropDownList runat="server"  AutoPostBack="False" ID="Form3010DD" SelectedValue=<%#Bind("Form3010")%>>
+                        <asp:ListItem Value="No">No</asp:ListItem>
+                        <asp:ListItem Value="Trained">Trained</asp:ListItem>
+                        <asp:ListItem Value="Demo">Demo</asp:ListItem>
+                        <asp:ListItem Value="Teach">Teach</asp:ListItem>
+                    </asp:DropDownList>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label runat="server" Text='<%# Bind("Form3010") %>' ID="LabelForm3010"></asp:Label>
+                </ItemTemplate>
+                <FooterTemplate>
+                    <asp:DropDownList runat="server"  AutoPostBack="False" ID="Form3010DDF" SelectedValue=<%#Bind("Form3010")%>>
+                        <asp:ListItem Value="No">No</asp:ListItem>
+                        <asp:ListItem Value="Trained">Trained</asp:ListItem>
+                        <asp:ListItem Value="Demo">Demo</asp:ListItem>
+                        <asp:ListItem Value="Teach">Teach</asp:ListItem>
+                    </asp:DropDownList>
+                </FooterTemplate>
+                </asp:TemplateField>
+
+
+
+                
+                <asp:TemplateField HeaderText="Updater" SortExpression="Updater">
+                    <EditItemTemplate>
+                        <asp:Label runat="server" Text='<%# Bind("Updater") %>' ID="LabelUpdaterE"></asp:Label>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label runat="server" Text='<%# Bind("Updater") %>' ID="LabelUpdaterI"></asp:Label>
+                    </ItemTemplate>
+
+                </asp:TemplateField>
+
+ 
+            
+                <asp:TemplateField HeaderText="Last Updated" InsertVisible="False" SortExpression="LastUpdated">
+                <EditItemTemplate>
+                    <asp:Label runat="server" Text='<%# Eval("LastUpdated", "{0:d}") %>' ID="LabelEditTraining"></asp:Label>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label runat="server" Text='<%# Bind("LastUpdated", "{0:d}") %>' ID="LabelItemTraining"></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
 
@@ -173,7 +394,7 @@
  
         </p>
             <p>
-        <asp:ImageButton ID="ExportResouces" runat="Server" ImageUrl="~/img/ExportExcel.gif" OnClick="ExportToExcelResouces" Height="25px" CausesValidation="False" />
+        <asp:ImageButton ID="ExportTraining" runat="Server" ImageUrl="~/img/ExportExcel.gif" OnClick="ExportToExcelTraining" Height="25px" CausesValidation="False" />
     </p>
 
 </asp:TableCell>
@@ -182,25 +403,33 @@
     
 
     <p>
-        <asp:SqlDataSource ID="BlueBinResourceSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Site_ConnectionString %>"
-            SelectCommand="exec sp_SelectBlueBinResource @Name"
-            UpdateCommand="exec sp_EditBlueBinResource  @BlueBinResourceID,@FirstName,@LastName,@MiddleName,@Login,@Email,@Phone,@Cell,@Title,@Active">
+        <asp:SqlDataSource ID="BlueBinTrainingSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Site_ConnectionString %>"
+            SelectCommand="exec sp_SelectBlueBinTraining @Name"
+            DeleteCommand="exec sp_DeleteBlueBinTraining @BlueBinTrainingID"
+            UpdateCommand="exec sp_EditBlueBinTraining  @BlueBinTrainingID,@Form3000,@Form3001,@Form3002,@Form3003,@Form3004,@Form3005,@Form3006,@Form3007,@Form3008,@Form3009,@Form3010,@UpdaterTB">
             <UpdateParameters>
-                <asp:Parameter Name="FirstName"></asp:Parameter>
+                <asp:Parameter Name="Form3000"></asp:Parameter>
+                <asp:Parameter Name="Form3001"></asp:Parameter>
+                <asp:Parameter Name="Form3002"></asp:Parameter>
+                <asp:Parameter Name="Form3003"></asp:Parameter>
+                <asp:Parameter Name="Form3004"></asp:Parameter>
+                <asp:Parameter Name="Form3005"></asp:Parameter>
+                <asp:Parameter Name="Form3006"></asp:Parameter>
+                <asp:Parameter Name="Form3007"></asp:Parameter>
+                <asp:Parameter Name="Form3008"></asp:Parameter>
+                <asp:Parameter Name="Form3009"></asp:Parameter>
+                <asp:Parameter Name="Form3010"></asp:Parameter>
                 <asp:Parameter Name="LastName"></asp:Parameter>
-                <asp:Parameter Name="MiddleName"></asp:Parameter>
-                <asp:Parameter Name="Login"></asp:Parameter>
-                 <asp:Parameter Name="Email"></asp:Parameter>
-                <asp:Parameter Name="Title"></asp:Parameter>
-                <asp:Parameter Name="Phone"></asp:Parameter>
-                <asp:Parameter Name="Cell"></asp:Parameter>
-                <asp:Parameter Name="Active"></asp:Parameter>
-                <asp:Parameter Name="LastUpdated"></asp:Parameter>
-                <asp:Parameter Name="BlueBinResourceID"></asp:Parameter>
+                <asp:ControlParameter ControlID="UpdaterTB" Name="UpdaterTB" PropertyName="Text" />
+                <asp:Parameter Name="BlueBinTrainingID"></asp:Parameter>
             </UpdateParameters>
              <SelectParameters>
                 <asp:ControlParameter ControlID="SearchBox" Name="Name" PropertyName="Text" DefaultValue="%"  />
             </SelectParameters>
+             <DeleteParameters>
+                <asp:Parameter Name="BlueBinTrainingID"></asp:Parameter>
+            </DeleteParameters>
+
         </asp:SqlDataSource>
 
         
