@@ -7,7 +7,7 @@
 <asp:TableRow><asp:TableCell><h2><%: Title %></h2>
     <p>Welcome to the Training Tracker for your BlueBin Operations Site.  </p>
     <p>Below are Identified Resources who are going through training on various forms.  
-        You can insert or update the status of the training using the formes below. </p>
+        You can insert or update the status of the training using the buttons below. Each form header is a clickable link to the form itself.</p>
               </asp:TableCell></asp:TableRow>
 <asp:TableRow>
     <asp:TableCell Width="500px"  >

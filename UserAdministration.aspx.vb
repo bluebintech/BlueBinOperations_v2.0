@@ -17,6 +17,12 @@ Partial Class UserAdministration
         GridViewUsers.DataBind()
         hiddenUsers.Visible = True
         hiddenRoles.Visible = False
+        hiddenOperations.Visible = False
+        GridViewOperations.Visible = False
+        hiddenUserOperations.Visible = False
+        GridViewUserOperations.Visible = False
+        hiddenRoleOperations.Visible = False
+        GridViewRoleOperations.Visible = False
     End Sub
 
     Protected Sub RolesB_Click(sender As Object, e As EventArgs) Handles RolesB.Click
@@ -26,6 +32,57 @@ Partial Class UserAdministration
         GridViewRoles.DataBind()
         hiddenRoles.Visible = True
         hiddenUsers.Visible = False
+        hiddenOperations.Visible = False
+        GridViewOperations.Visible = False
+        hiddenUserOperations.Visible = False
+        GridViewUserOperations.Visible = False
+        hiddenRoleOperations.Visible = False
+        GridViewRoleOperations.Visible = False
+    End Sub
+
+    Protected Sub OperationsB_Click(sender As Object, e As EventArgs) Handles OperationsB.Click
+        GridViewUsers.Visible = False
+        SearchTable.Visible = False
+        GridViewRoles.Visible = False
+        GridViewOperations.DataBind()
+        hiddenRoles.Visible = False
+        hiddenUsers.Visible = False
+        hiddenOperations.Visible = True
+        GridViewOperations.Visible = True
+        hiddenUserOperations.Visible = False
+        GridViewUserOperations.Visible = False
+        hiddenRoleOperations.Visible = False
+        GridViewRoleOperations.Visible = False
+    End Sub
+
+    Protected Sub RoleOperationsB_Click(sender As Object, e As EventArgs) Handles RoleOperationsB.Click
+        GridViewUsers.Visible = False
+        SearchTable.Visible = False
+        GridViewRoles.Visible = False
+        GridViewOperations.DataBind()
+        hiddenRoles.Visible = False
+        hiddenUsers.Visible = False
+        hiddenOperations.Visible = False
+        GridViewOperations.Visible = False
+        hiddenUserOperations.Visible = False
+        GridViewUserOperations.Visible = False
+        hiddenRoleOperations.Visible = True
+        GridViewRoleOperations.Visible = True
+    End Sub
+
+    Protected Sub UserOperationsB_Click(sender As Object, e As EventArgs) Handles UserOperationsB.Click
+        GridViewUsers.Visible = False
+        SearchTable.Visible = True
+        GridViewRoles.Visible = False
+        GridViewOperations.DataBind()
+        hiddenRoles.Visible = False
+        hiddenUsers.Visible = False
+        hiddenOperations.Visible = False
+        GridViewOperations.Visible = False
+        hiddenUserOperations.Visible = True
+        GridViewUserOperations.Visible = True
+        hiddenRoleOperations.Visible = False
+        GridViewRoleOperations.Visible = False
     End Sub
 
 
@@ -34,9 +91,15 @@ Partial Class UserAdministration
         If Not Page.IsPostBack() Then
             GridViewUsers.DataBind()
             GridViewRoles.DataBind()
+            GridViewOperations.DataBind()
+            GridViewRoleOperations.DataBind()
+            GridViewUserOperations.DataBind()
             GridViewUsers.Visible = True
             SearchTable.Visible = True
             GridViewRoles.Visible = False
+            GridViewOperations.Visible = False
+            GridViewUserOperations.Visible = False
+            GridViewRoleOperations.Visible = False
             AddUserErrorLabel.Text = ""
         End If
     End Sub
@@ -174,6 +237,54 @@ Partial Class UserAdministration
             cmd.ExecuteNonQuery()
             conn.Close()
             GridViewRoles.DataBind()
+        End If
+    End Sub
+
+    Protected Sub GridViewOperations_RowCommand(ByVal sender As System.Object, ByVal e As System.Web.UI.WebControls.GridViewCommandEventArgs)
+        If e.CommandName = "OperationsInsert" Then
+            Dim conn As New SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings("Site_ConnectionString").ConnectionString)
+            Dim ad As New SqlDataAdapter()
+            Dim cmd As New SqlCommand()
+            Dim txtOpName As TextBox = DirectCast(GridViewOperations.FooterRow.FindControl("OpName"), TextBox)
+            Dim txtDescription As TextBox = DirectCast(GridViewOperations.FooterRow.FindControl("Description"), TextBox)
+            cmd.Connection = conn
+            cmd.CommandText = "exec sp_InsertOperations '" & txtOpName.Text & "','" & txtDescription.Text & "'"
+            conn.Open()
+            cmd.ExecuteNonQuery()
+            conn.Close()
+            GridViewOperations.DataBind()
+        End If
+    End Sub
+
+    Protected Sub GridViewRoleOperations_RowCommand(ByVal sender As System.Object, ByVal e As System.Web.UI.WebControls.GridViewCommandEventArgs)
+        If e.CommandName = "RoleOperationsInsert" Then
+            Dim conn As New SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings("Site_ConnectionString").ConnectionString)
+            Dim ad As New SqlDataAdapter()
+            Dim cmd As New SqlCommand()
+            Dim txtRoleName As String = TryCast(GridViewRoleOperations.FooterRow.FindControl("RoleNameRODDF"), DropDownList).SelectedItem.Value
+            Dim txtOpName As String = TryCast(GridViewRoleOperations.FooterRow.FindControl("OpNameRODDF"), DropDownList).SelectedItem.Value
+            cmd.Connection = conn
+            cmd.CommandText = "exec sp_InsertRoleOperations '" & txtRoleName & "','" & txtOpName & "'"
+            conn.Open()
+            cmd.ExecuteNonQuery()
+            conn.Close()
+            GridViewRoleOperations.DataBind()
+        End If
+    End Sub
+
+    Protected Sub GridViewUserOperations_RowCommand(ByVal sender As System.Object, ByVal e As System.Web.UI.WebControls.GridViewCommandEventArgs)
+        If e.CommandName = "UserOperationsInsert" Then
+            Dim conn As New SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings("Site_ConnectionString").ConnectionString)
+            Dim ad As New SqlDataAdapter()
+            Dim cmd As New SqlCommand()
+            Dim txtName As String = TryCast(GridViewUserOperations.FooterRow.FindControl("NameUODDF"), DropDownList).SelectedItem.Value
+            Dim txtOpName As String = TryCast(GridViewUserOperations.FooterRow.FindControl("OpNameUODDF"), DropDownList).SelectedItem.Value
+            cmd.Connection = conn
+            cmd.CommandText = "exec sp_InsertUserOperations '" & txtName & "','" & txtOpName & "'"
+            conn.Open()
+            cmd.ExecuteNonQuery()
+            conn.Close()
+            GridViewUserOperations.DataBind()
         End If
     End Sub
 

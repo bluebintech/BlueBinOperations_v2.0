@@ -60,8 +60,8 @@
             </div>
         </div>
 <div class="container body-content">
-
-
+    <br />
+    <asp:Image id="LogoImage" runat="server"></asp:Image> <br />
 <h2>BlueBin Login</h2>
 
     <div class="row">

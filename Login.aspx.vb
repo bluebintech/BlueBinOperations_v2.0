@@ -30,6 +30,20 @@ Partial Public Class Login
 
             con.Close()
 
+
+
+            Dim con2 As New SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings("Site_ConnectionString").ConnectionString)
+            con2.Open()
+            Dim da2 As New SqlDataAdapter("exec sp_SelectLogoImage", con)
+            Dim dt2 As New DataTable
+
+            da2.Fill(dt2)
+
+            Dim LogoString As String = dt2.Rows(0)("ConfigValue").ToString()
+            LogoImage.ImageUrl = "~/img/" & LogoString
+
+            con2.Close()
+
         End If
 
     End Sub

@@ -57,16 +57,16 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/Dashboard">Dashboard</a></li>
+                        <li><a runat="server" href="~/Dashboard" id="DashboardDD">Dashboard</a></li>
                         <li class="dropdown">
-                                  <a class="dropdown-toggle" data-toggle="dropdown" id="QCNthemes">QCN<span class="caret"></span></a>
+                                  <a class="dropdown-toggle" runat="server" data-toggle="dropdown" id="QCNDD">QCN<span class="caret"></span></a>
                                   <ul class="dropdown-menu" aria-labelledby="themes">
 							                    <li><a runat="server" href="~/QCN" onClick="switchView('QCN Status')">QCN Status Home</a></li>
                                                 <li><a runat="server" href="~/QCNForm" onClick="switchView('New QCN Form')">New QCN Form</a></li>     
                                   </ul>
                                 </li>
                         <li class="dropdown">
-                                  <a class="dropdown-toggle" data-toggle="dropdown" id="Gembathemes">Gemba<span class="caret"></span></a>
+                                  <a class="dropdown-toggle" runat="server" data-toggle="dropdown" id="GembaDD">Gemba<span class="caret"></span></a>
                                   <ul class="dropdown-menu" aria-labelledby="themes">
 							                    <li><a runat="server" href="~/Gemba" onClick="switchView('Gemba')">Gemba Audits Home</a></li>
                                                 <li><a runat="server" href="~/GembaAuditNodeForm" onClick="switchView('GembaAuditNode')">New Gemba Audit</a></li>
@@ -74,14 +74,14 @@
                                   </ul>
                                 </li>
                         <li class="dropdown">
-                                  <a class="dropdown-toggle" data-toggle="dropdown" id="Hardwarethemes">Hardware<span class="caret"></span></a>
+                                  <a class="dropdown-toggle" runat="server" data-toggle="dropdown" id="HardwareDD">Hardware<span class="caret"></span></a>
                                   <ul class="dropdown-menu" aria-labelledby="themes">
 							                    <li><a runat="server" href="~/HardwareOrder">Hardware Home</a></li>
                                                 <li><a runat="server" href="~/HardwareOrderNew">New Hardware Order</a></li>     
                                   </ul>
                                 </li>
                         <li class="dropdown">
-                                  <a class="dropdown-toggle" data-toggle="dropdown" id="Scanningthemes">Scanning<span class="caret"></span></a>
+                                  <a class="dropdown-toggle" runat="server" data-toggle="dropdown" id="ScanningDD">Scanning<span class="caret"></span></a>
                                   <ul class="dropdown-menu" aria-labelledby="themes">
 							                    <li><a runat="server" href="~/Scans">Scanning Home</a></li>
                                                 <li><a runat="server" href="~/ScanLines">New Scanning Batch</a></li>     
@@ -91,18 +91,18 @@
 
                     <ul class="nav navbar-nav navbar-right">
                                 <li class="dropdown">
-                                  <a class="dropdown-toggle" runat="server" data-toggle="dropdown" href="~/Administration" id="A1">Administration<span class="caret"></span></a>
+                                  <a class="dropdown-toggle" runat="server" data-toggle="dropdown" href="~/Administration" id="ADMINMENUDD">Administration<span class="caret"></span></a>
                                   <ul class="dropdown-menu" aria-labelledby="themes">
-							                    <li><a runat="server" href="~/SiteConfiguration" onClick="switchView('Site Configuration')">Site Configuration</a></li>
-                                                <li><a runat="server" href="~/UserAdministration" onClick="switchView('UserAdministration')">User Administration</a></li>
-                                                <li><a runat="server" href="~/Resources" onClick="switchView('Resources')">DMS Resources</a></li>
+							                    <li><a runat="server" href="~/SiteConfiguration" onClick="switchView('Site Configuration')" id="ADMINCONFIGDD">Site Configuration</a></li>
+                                                <li><a runat="server" href="~/UserAdministration" onClick="switchView('UserAdministration')" id="ADMINUSERSDD">User Administration</a></li>
+                                                <li><a runat="server" href="~/Resources" onClick="switchView('Resources')" id="ADMINRESOURCESDD">DMS Resources</a></li>
+                                                <li><a runat="server" href="~/Training" onClick="switchView('Training')" id="ADMINTRAININGDD">Training</a></li>
                                                 
                                   </ul>
                                 </li>
                                 <li class="dropdown">
-                                  <a class="dropdown-toggle" data-toggle="dropdown" id="themes">Other<span class="caret"></span></a>
+                                  <a class="dropdown-toggle" runat="server" data-toggle="dropdown" id="OtherDD">Other<span class="caret"></span></a>
                                   <ul class="dropdown-menu" aria-labelledby="themes">
-							                    <li><a runat="server" href="~/Training" onClick="switchView('Training')">Training</a></li>
                                                 <li><a runat="server" href="~/OperationalProcedures" onClick="switchView('Operational Procedures')">Operational Procedures</a></li>
                                                 <li><a runat="server" href="~/LearnAbout" onClick="switchView('Learn About')">Learn About</a></li>
                                                 <li><a runat="server" href="~/Contact" onClick="switchView('Contact')">Contact</a></li>

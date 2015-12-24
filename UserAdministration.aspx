@@ -8,6 +8,9 @@
     <p>
             <asp:LinkButton ID="UsersB" runat="server" class="btn btn-default">Users</asp:LinkButton>&nbsp;
             <asp:LinkButton ID="RolesB" runat="server" class="btn btn-default">Roles</asp:LinkButton>&nbsp;
+            <asp:LinkButton ID="OperationsB" runat="server" class="btn btn-default">Operations</asp:LinkButton>&nbsp;
+            <asp:LinkButton ID="RoleOperationsB" runat="server" class="btn btn-default">Role Operations</asp:LinkButton>&nbsp;
+            <asp:LinkButton ID="UserOperationsB" runat="server" class="btn btn-default">User Operations</asp:LinkButton>&nbsp;
             
         </p>
 </asp:TableCell></asp:TableRow>
@@ -204,7 +207,9 @@
  
         </p>
         </asp:TableCell> </asp:TableRow>
-    <asp:TableRow Height="10px"></asp:TableRow>
+
+
+
     <asp:TableRow><asp:TableCell><asp:Label runat="server" id="AddUserErrorLabel"></asp:Label></asp:TableCell></asp:TableRow>
 <asp:TableRow>
 <asp:TableCell Width="500px"  >
@@ -253,8 +258,211 @@
         <SortedDescendingHeaderStyle BackColor="#000065"></SortedDescendingHeaderStyle>
     </asp:GridView>
  
-        </p>
+
 </asp:TableCell> </asp:TableRow>
+
+
+    <asp:TableRow><asp:TableCell><asp:Label runat="server" id="Label1"></asp:Label></asp:TableCell></asp:TableRow>
+<asp:TableRow>
+<asp:TableCell Width="500px"  >
+<asp:Label runat="server" id="hiddenOperations" Visible="False"><h3>Operations</h3><p></asp:Label>
+        <asp:GridView ID="GridViewOperations" OnRowCommand="GridViewOperations_RowCommand" CssClass="GridViewitem" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" DataSourceID="OperationsDatasource" AutoGenerateColumns="False" DataKeyNames="OpID" AllowSorting="True" AllowPaging="True" ShowFooter="True">
+        <AlternatingRowStyle BackColor="#DCDCDC"></AlternatingRowStyle>
+
+        <Columns>
+            <asp:TemplateField ShowHeader="False">
+                <EditItemTemplate>
+                    <asp:Button runat="server" Text="Update" CommandName="Update" CausesValidation="True" ValidationGroup="EditOperations" ID="Button1"></asp:Button>&nbsp;<asp:Button runat="server" Text="Cancel" CommandName="Cancel" CausesValidation="False" ID="Button2"></asp:Button>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Button runat="server" Text="Edit" CommandName="Edit" CausesValidation="False" ID="ITOperationsB"></asp:Button>
+                </ItemTemplate>
+                <FooterTemplate><asp:LinkButton ID="OperationsInsert" runat="server" Text="Add" CausesValidation="True" ValidationGroup="AddOperations"  CommandName="OperationsInsert"></asp:LinkButton></FooterTemplate>
+            </asp:TemplateField>
+
+            <asp:TemplateField HeaderText="OpID" InsertVisible="False" SortExpression="OpID">
+                <EditItemTemplate>
+                    <asp:Label runat="server" Text='<%# Eval("OpID") %>' ID="LabelOpIDIT"></asp:Label>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label runat="server" Text='<%# Bind("OpID") %>' ID="LabelOpIDET"></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Op Name" SortExpression="OpName">
+                <EditItemTemplate>
+                    <asp:TextBox runat="server" Text='<%# Bind("OpName") %>' ID="LabelOpNameET"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidatorOpName" ValidationGroup="AddOperations" runat="server" ControlToValidate="LabelOpNameET" Display="Dynamic" ForeColor="Red" Font-Size="X-Small">REQUIRED</asp:RequiredFieldValidator>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label runat="server" Text='<%# Bind("OpName") %>' ID="LabelOpNameIT"></asp:Label>
+                </ItemTemplate>
+                <FooterTemplate><asp:TextBox runat="server" ID="OpName"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidatorOpName" ValidationGroup="AddOperations" runat="server" ControlToValidate="OpName" Display="Dynamic" ForeColor="Red" Font-Size="X-Small">REQUIRED</asp:RequiredFieldValidator></FooterTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Description" SortExpression="Description">
+                <EditItemTemplate>
+                    <asp:TextBox runat="server" Text='<%# Bind("Description") %>' ID="LabelDescriptionET"></asp:TextBox>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label runat="server" Text='<%# Bind("Description") %>' ID="LabelDescriptionIT"></asp:Label>
+                </ItemTemplate>
+                <FooterTemplate><asp:TextBox runat="server" ID="Description"></asp:TextBox></FooterTemplate>
+                <ItemStyle Wrap="False" Width="150px"></ItemStyle>
+            </asp:TemplateField>
+            
+        </Columns>
+        <FooterStyle BackColor="#CCCCCC" ForeColor="Black"></FooterStyle>
+        <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White"></HeaderStyle>
+        <PagerStyle HorizontalAlign="Center" BackColor="#999999" ForeColor="Black"></PagerStyle>
+        <RowStyle BackColor="#EEEEEE" ForeColor="Black"></RowStyle>
+        <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White"></SelectedRowStyle>
+        <SortedAscendingCellStyle BackColor="#F1F1F1"></SortedAscendingCellStyle>
+        <SortedAscendingHeaderStyle BackColor="#0000A9"></SortedAscendingHeaderStyle>
+        <SortedDescendingCellStyle BackColor="#CAC9C9"></SortedDescendingCellStyle>
+        <SortedDescendingHeaderStyle BackColor="#000065"></SortedDescendingHeaderStyle>
+    </asp:GridView>
+ 
+ 
+
+
+</asp:TableCell> </asp:TableRow>
+    
+
+    <asp:TableRow><asp:TableCell><asp:Label runat="server" id="Label2"></asp:Label></asp:TableCell></asp:TableRow>
+<asp:TableRow>
+<asp:TableCell Width="500px"  >
+<asp:Label runat="server" id="hiddenRoleOperations" Visible="False"><h3>Role Operations</h3><p></asp:Label>
+        <asp:GridView ID="GridViewRoleOperations" OnRowCommand="GridViewRoleOperations_RowCommand" CssClass="GridViewitem" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" DataSourceID="RoleOperationsDatasource" AutoGenerateColumns="False" DataKeyNames="RoleID,OpID" AllowSorting="True" AllowPaging="True" ShowFooter="True">
+        <AlternatingRowStyle BackColor="#DCDCDC"></AlternatingRowStyle>
+
+        <Columns>
+            <asp:TemplateField ShowHeader="False">
+                <ItemTemplate>
+                    <asp:Button runat="server" Text="Delete" CommandName="Delete" CausesValidation="False" ID="ITRoleOperationsB"></asp:Button>
+                </ItemTemplate>
+                <FooterTemplate><asp:LinkButton ID="RoleOperationsInsert" runat="server" Text="Add"  CommandName="RoleOperationsInsert"></asp:LinkButton></FooterTemplate>
+            </asp:TemplateField>
+
+	    <asp:TemplateField HeaderText="RoleID" InsertVisible="False" SortExpression="RoleID" Visible="False">
+                <ItemTemplate>
+                    <asp:Label runat="server" Text='<%# Bind("RoleID") %>' ID="LabelRoleIDET"></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+            
+            <asp:TemplateField HeaderText="OpID" InsertVisible="False" SortExpression="OpID" Visible="False">
+                <ItemTemplate>
+                    <asp:Label runat="server" Text='<%# Bind("OpID") %>' ID="LabelOpIDET"></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+            
+		<asp:TemplateField HeaderText="Role Name" SortExpression="RoleName">
+                <ItemTemplate>
+                    <asp:Label runat="server" Text='<%# Bind("RoleName") %>' ID="LabelRoleNameIT"></asp:Label>
+                </ItemTemplate>
+                <FooterTemplate>
+			<asp:DropDownList runat="server" ID="RoleNameRODDF" DataSourceID="RoleNameDataSourceF" DataTextField="RoleName" DataValueField="RoleID" AppendDataBoundItems="False">
+                    </asp:DropDownList>
+                    <asp:SqlDataSource runat="server" ID="RoleNameDataSourceF" ConnectionString='<%$ ConnectionStrings:Site_ConnectionString %>' SelectCommand="SELECT DISTINCT [RoleID],[RoleName] FROM bluebin.[BlueBinRoles]"></asp:SqlDataSource>
+		</FooterTemplate>
+            </asp:TemplateField>
+            
+            
+		<asp:TemplateField HeaderText="Op Name" SortExpression="OpName">
+                <ItemTemplate>
+                    <asp:Label runat="server" Text='<%# Bind("OpName") %>' ID="LabelOpNameIT"></asp:Label>
+                </ItemTemplate>
+                <FooterTemplate>
+			<asp:DropDownList runat="server" ID="OpNameRODDF" DataSourceID="OpNameDataSourceF" DataTextField="OpName" DataValueField="OpID" AppendDataBoundItems="False">
+                    </asp:DropDownList>
+                    <asp:SqlDataSource runat="server" ID="OpNameDataSourceF" ConnectionString='<%$ ConnectionStrings:Site_ConnectionString %>' SelectCommand="SELECT DISTINCT [OpID],[OpName] FROM bluebin.[BlueBinOperations]"></asp:SqlDataSource>
+		</FooterTemplate>
+            </asp:TemplateField>
+            
+        </Columns>
+        <FooterStyle BackColor="#CCCCCC" ForeColor="Black"></FooterStyle>
+        <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White"></HeaderStyle>
+        <PagerStyle HorizontalAlign="Center" BackColor="#999999" ForeColor="Black"></PagerStyle>
+        <RowStyle BackColor="#EEEEEE" ForeColor="Black"></RowStyle>
+        <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White"></SelectedRowStyle>
+        <SortedAscendingCellStyle BackColor="#F1F1F1"></SortedAscendingCellStyle>
+        <SortedAscendingHeaderStyle BackColor="#0000A9"></SortedAscendingHeaderStyle>
+        <SortedDescendingCellStyle BackColor="#CAC9C9"></SortedDescendingCellStyle>
+        <SortedDescendingHeaderStyle BackColor="#000065"></SortedDescendingHeaderStyle>
+    </asp:GridView>
+ 
+
+</asp:TableCell></asp:TableRow>
+
+   
+
+    <asp:TableRow><asp:TableCell><asp:Label runat="server" id="Label3"></asp:Label></asp:TableCell></asp:TableRow>
+<asp:TableRow>
+<asp:TableCell Width="500px"  >
+<asp:Label runat="server" id="hiddenUserOperations" Visible="False"><h3>User Operations</h3><p></asp:Label>
+        <asp:GridView ID="GridViewUserOperations" OnRowCommand="GridViewUserOperations_RowCommand" CssClass="GridViewitem" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" DataSourceID="UserOperationsDatasource" AutoGenerateColumns="False" DataKeyNames="BlueBinUserID,OpID" AllowSorting="True" AllowPaging="True" ShowFooter="True">
+        <AlternatingRowStyle BackColor="#DCDCDC"></AlternatingRowStyle>
+
+        <Columns>
+            <asp:TemplateField ShowHeader="False">
+                <ItemTemplate>
+                    <asp:Button runat="server" Text="Delete" CommandName="Delete" CausesValidation="False" ID="ITUserOperationsB"></asp:Button>
+                </ItemTemplate>
+                <FooterTemplate><asp:LinkButton ID="UserOperationsInsert" runat="server" Text="Add"  CommandName="UserOperationsInsert"></asp:LinkButton></FooterTemplate>
+            </asp:TemplateField>
+
+	<asp:TemplateField HeaderText="BlueBinUserID" InsertVisible="False" SortExpression="BlueBinUserID" Visible="False">
+                <ItemTemplate>
+                    <asp:Label runat="server" Text='<%# Bind("BlueBinUserID") %>' ID="LabelBlueBinUserIDET"></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+
+	<asp:TemplateField HeaderText="OpID" InsertVisible="False" SortExpression="OpID" Visible="False">
+                <ItemTemplate>
+                    <asp:Label runat="server" Text='<%# Bind("OpID") %>' ID="LabelOpIDET"></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+            
+		<asp:TemplateField HeaderText="Name" SortExpression="Name">
+                <ItemTemplate>
+                    <asp:Label runat="server" Text='<%# Bind("Name") %>' ID="LabelNameIT"></asp:Label>
+                </ItemTemplate>
+                <FooterTemplate>
+		<asp:DropDownList runat="server" ID="NameUODDF" DataSourceID="NameDataSourceF" DataTextField="Name" DataValueField="BlueBinUserID" AppendDataBoundItems="False">
+                    </asp:DropDownList>
+                    <asp:SqlDataSource runat="server" ID="NameDataSourceF" ConnectionString='<%$ ConnectionStrings:Site_ConnectionString %>' SelectCommand="SELECT DISTINCT [BlueBinUserID],LastName + ', ' + FirstName as Name FROM bluebin.[BlueBinUser] where Active = 1"></asp:SqlDataSource>
+		</FooterTemplate>
+            	</asp:TemplateField>
+            
+		<asp:TemplateField HeaderText="CurrentRole" InsertVisible="False" SortExpression="CurrentRole" Visible="False">
+                <ItemTemplate>
+                    <asp:Label runat="server" Text='<%# Bind("CurrentRole") %>' ID="LabelCurrentRoleET"></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+            
+		<asp:TemplateField HeaderText="Op Name" SortExpression="OpName">
+                <ItemTemplate>
+                    <asp:Label runat="server" Text='<%# Bind("OpName") %>' ID="LabelOpNameIT"></asp:Label>
+                </ItemTemplate>
+                <FooterTemplate>
+			<asp:DropDownList runat="server" ID="OpNameUODDF" DataSourceID="OpNameDataSourceF2" DataTextField="OpName" DataValueField="OpID" AppendDataBoundItems="False">
+                    </asp:DropDownList>
+                    <asp:SqlDataSource runat="server" ID="OpNameDataSourceF2" ConnectionString='<%$ ConnectionStrings:Site_ConnectionString %>' SelectCommand="SELECT DISTINCT [OpID],[OpName] FROM bluebin.[BlueBinOperations]"></asp:SqlDataSource>
+		</FooterTemplate>
+            </asp:TemplateField>
+            
+        </Columns>
+        <FooterStyle BackColor="#CCCCCC" ForeColor="Black"></FooterStyle>
+        <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White"></HeaderStyle>
+        <PagerStyle HorizontalAlign="Center" BackColor="#999999" ForeColor="Black"></PagerStyle>
+        <RowStyle BackColor="#EEEEEE" ForeColor="Black"></RowStyle>
+        <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White"></SelectedRowStyle>
+        <SortedAscendingCellStyle BackColor="#F1F1F1"></SortedAscendingCellStyle>
+        <SortedAscendingHeaderStyle BackColor="#0000A9"></SortedAscendingHeaderStyle>
+        <SortedDescendingCellStyle BackColor="#CAC9C9"></SortedDescendingCellStyle>
+        <SortedDescendingHeaderStyle BackColor="#000065"></SortedDescendingHeaderStyle>
+    </asp:GridView>
+ 
+     
+</asp:TableCell></asp:TableRow>
+
 
 
     </asp:Table>
@@ -305,6 +513,50 @@
             <asp:Parameter Name="RoleID" Type="Int32"></asp:Parameter>
             <asp:Parameter Name="RoleName" Type="String"></asp:Parameter>  
         </UpdateParameters>
+    </asp:SqlDataSource>
+
+</p>
+        <p>
+        <asp:SqlDataSource runat="server" ID="OperationsDataSource" ConnectionString='<%$ ConnectionStrings:Site_ConnectionString %>' 
+            DeleteCommand="Delete from bluebin.BlueBinOperations where OpID = @OpID"  
+            SelectCommand="exec sp_SelectOperations" 
+            UpdateCommand="exec sp_EditOperations @OpID,@OpName,@Description">
+        <DeleteParameters>
+            <asp:Parameter Name="OpID" Type="Int32"></asp:Parameter>
+            <asp:Parameter Name="OpName" Type="String"></asp:Parameter>
+        </DeleteParameters>
+        <UpdateParameters>
+            <asp:Parameter Name="OpID" Type="Int32"></asp:Parameter>
+            <asp:Parameter Name="OpName" Type="String"></asp:Parameter>
+            <asp:Parameter Name="Description" Type="String"></asp:Parameter>   
+        </UpdateParameters>
+    </asp:SqlDataSource>
+
+</p>
+
+                <p>
+        <asp:SqlDataSource runat="server" ID="RoleOperationsDataSource" ConnectionString='<%$ ConnectionStrings:Site_ConnectionString %>' 
+            DeleteCommand="Delete from bluebin.BlueBinRoleOperations where RoleID = @RoleID and OpID = @OpID"  
+            SelectCommand="exec sp_SelectRoleOperations" >
+        <DeleteParameters>
+            <asp:Parameter Name="RoleID" Type="Int32"></asp:Parameter>
+            <asp:Parameter Name="OpID" Type="Int32"></asp:Parameter>
+        </DeleteParameters>
+    </asp:SqlDataSource>
+
+</p>
+
+                <p>
+        <asp:SqlDataSource runat="server" ID="UserOperationsDataSource" ConnectionString='<%$ ConnectionStrings:Site_ConnectionString %>' 
+            DeleteCommand="Delete from bluebin.BlueBinUserOperations where BlueBinUserID = @BlueBinUserID and OpID = @OpID"  
+            SelectCommand="exec sp_SelectUserOperations @Name" >
+        <DeleteParameters>
+            <asp:Parameter Name="BlueBinUserID" Type="Int32"></asp:Parameter>
+            <asp:Parameter Name="OpID" Type="Int32"></asp:Parameter>
+        </DeleteParameters>
+        <SelectParameters>
+                <asp:ControlParameter ControlID="SearchBox" Name="Name" PropertyName="Text" DefaultValue="%"  />
+        </SelectParameters>
     </asp:SqlDataSource>
 
 </p>

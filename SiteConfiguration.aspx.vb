@@ -55,7 +55,7 @@ Partial Class SiteConfiguration
             GridViewConfig.DataBind()
             GridViewQCNType.DataBind()
             GridViewQCNStatus.DataBind()
-            GridViewConfig.Visible = False
+            GridViewConfig.Visible = True
             GridViewQCNType.Visible = False
             GridViewQCNStatus.Visible = False
         End If
