@@ -11,29 +11,19 @@
     </p>
     <p>
     <p>
-        <asp:GridView  CssClass="GridViewitem" ID="GridViewHardware" DataKeyNames="POID"  runat="server" AllowSorting="False" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" AllowPaging="True" RowStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center" CellSpacing="3">
+        <asp:GridView  CssClass="GridViewitem" ID="GridViewHardware" DataKeyNames="ClientInvoiceID"  runat="server" AllowSorting="False" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" AllowPaging="True" RowStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center" CellSpacing="3">
             <AlternatingRowStyle BackColor="#DCDCDC" />
             <Columns>
             <asp:CommandField ShowSelectButton="True" ButtonType="Button" />
-                <asp:BoundField DataField="PO" HeaderText="PO" SortExpression="PO" />
-                <asp:TemplateField HeaderText="Customer" SortExpression="CustomerName">
-                    <EditItemTemplate>
-                        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource2" DataTextField="CustomerName" DataValueField="CustomerName" SelectedValue='<%# Bind("CustomerName") %>'>
-                        </asp:DropDownList>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("CustomerName") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="Vendor" SortExpression="VendorName">
-                    <EditItemTemplate>
-                        <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="SqlDataSource3" DataTextField="VendorName" DataValueField="VendorName" SelectedValue='<%# Bind("VendorName") %>'>
-                        </asp:DropDownList>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label ID="Label2" runat="server" Text='<%# Bind("VendorName") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
+                <asp:BoundField DataField="POID" HeaderText="POID" SortExpression="POID" Visible="False"/>
+                <asp:BoundField DataField="PO" HeaderText="PO" SortExpression="PO" Visible="False" />
+                <asp:BoundField DataField="ClientInvoiceID" HeaderText="ClientInvoiceID" SortExpression="ClientInvoiceID" Visible="False" /> 
+                <asp:BoundField DataField="ClientInvoice" HeaderText="Invoice" SortExpression="ClientInvoice" /> 
+                <asp:BoundField DataField="CustomerName" HeaderText="Customer" SortExpression="CustomerName" />
+                <asp:BoundField DataField="VendorName" HeaderText="Vendor" SortExpression="VendorName" Visible ="False"/>             
+                <asp:BoundField DataField="SubTotal" HeaderText="SubTotal" SortExpression="SubTotal" DataFormatString="{0:c}" />
+                <asp:BoundField DataField="Tax" HeaderText="Tax" SortExpression="Tax" DataFormatString="{0:c}" />
+                <asp:BoundField DataField="Shipping" HeaderText="Shipping" SortExpression="Shipping" DataFormatString="{0:c}" />
                 <asp:BoundField DataField="Total" HeaderText="Total" SortExpression="Total" DataFormatString="{0:c}" />
                 <asp:BoundField DataField="OrderDate" HeaderText="Order Date" SortExpression="OrderDate" DataFormatString="{0:d}"  />
             </Columns>
@@ -47,33 +37,10 @@
             <SortedDescendingCellStyle BackColor="#CAC9C9" />
             <SortedDescendingHeaderStyle BackColor="#000065" />
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BlueBinHardwareConnectionString %>" DeleteCommand="DELETE FROM [PO] WHERE [POID] = @POID" 
-            InsertCommand="INSERT INTO [PO] ([PO], (Select CustomerID from Customer where CustomerName = @CustomerName), (select VendorID from Vendor where VendorName = @VendorName), [Total], [OrderDate]) VALUES (@PO, @CustomerID, @VendorID, @Total, @OrderDate)" 
-            UpdateCommand="UPDATE [PO] SET [PO] = @PO, [CustomerID] = (Select CustomerID from Customer where CustomerName = @CustomerName), [VendorID] = (select VendorID from Vendor where VendorName = @VendorName), [Total] = @Total, [OrderDate] = @OrderDate WHERE [POID] = @POID">
-            <DeleteParameters>
-                <asp:Parameter Name="POID" Type="Int32" />
-            </DeleteParameters>
-            <InsertParameters>
-                <asp:Parameter Name="CustomerName" />
-                <asp:Parameter Name="VendorName" />
-                <asp:Parameter Name="PO" Type="String" />
-                <asp:Parameter Name="CustomerID" Type="Int32" />
-                <asp:Parameter Name="VendorID" Type="Int32" />
-                <asp:Parameter Name="Total" Type="Decimal" />
-                <asp:Parameter Name="OrderDate" DbType="Date" />
-            </InsertParameters>
-            <UpdateParameters>
-                <asp:Parameter Name="PO" Type="String" />
-                <asp:Parameter Name="CustomerName" />
-                <asp:Parameter Name="VendorName" />
-                <asp:Parameter Name="Total" Type="Decimal" />
-                <asp:Parameter Name="OrderDate" DbType="Date" />
-                <asp:Parameter Name="POID" Type="Int32" />
-            </UpdateParameters>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BlueBinHardwareConnectionString %>" >
+
         </asp:SqlDataSource>
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:BlueBinHardwareConnectionString %>" SelectCommand="SELECT DISTINCT [CustomerName] FROM [Customer]"></asp:SqlDataSource>
-        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:BlueBinHardwareConnectionString %>" SelectCommand="SELECT DISTINCT [VendorName] FROM [Vendor]"></asp:SqlDataSource>
-    </p>
+           </p>
             <p>
                 &nbsp;</p>
             <p>
@@ -81,12 +48,13 @@
                     <AlternatingRowStyle BackColor="#DCDCDC" />
 
                     <Columns>
-                        <asp:BoundField DataField="POID" HeaderText="POID" SortExpression="POID" Visible="False" />
-                        <asp:BoundField DataField="PO" HeaderText="PO" SortExpression="PO" />
-                        <asp:BoundField DataField="POLine" HeaderText="PO Line" SortExpression="POLine" />
+                        <asp:BoundField DataField="ClientInvoiceID" HeaderText="ClientInvoiceID" SortExpression="ClientInvoiceID" Visible="False" />
+                        <asp:BoundField DataField="ClientInvoice" HeaderText="Invoice" SortExpression="ClientInvoice" />
+                        <asp:BoundField DataField="ClientInvoiceLine" HeaderText="Invoice Line" SortExpression="ClientInvoiceLine" />
                         <asp:BoundField DataField="ItemDescription" HeaderText="Item Description" SortExpression="ItemDescription" />
                         <asp:BoundField DataField="Qty" HeaderText="Qty" SortExpression="Qty" />
-                        <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" SortExpression="Subtotal" />
+                        <asp:BoundField DataField="UnitCost" HeaderText="Unit Cost" SortExpression="UnitCost"  DataFormatString="{0:c}"/>
+                        <asp:BoundField DataField="Subtotal" HeaderText="Subtotal" SortExpression="Subtotal"  DataFormatString="{0:c}"/>
                     </Columns>
                     <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
                     <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
@@ -99,9 +67,9 @@
                     <SortedDescendingHeaderStyle BackColor="#000065" />
                 </asp:GridView>
                 <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:BlueBinHardwareConnectionString %>" 
-                    SelectCommand="exec sp_SelectPO @POID">
+                    SelectCommand="exec sp_SelectClientInvoiceLines @ClientInvoiceID">
                     <SelectParameters>
-                        <asp:ControlParameter ControlID="GridViewHardware" Name="POID" PropertyName="SelectedValue" Type="Int32" />
+                        <asp:ControlParameter ControlID="GridViewHardware" Name="ClientInvoiceID" PropertyName="SelectedValue" Type="Int32" />
                     </SelectParameters>
                 </asp:SqlDataSource>
     </p>

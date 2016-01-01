@@ -23,7 +23,7 @@ Partial Class HardwareOrder
             Me.Page.Controls.Add(SqlDataSourceHardware)
             SqlDataSourceHardware.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings("BlueBinHardwareConnectionString").ConnectionString
             SqlDataSourceHardware.SelectCommand =
-                "exec sp_SelectHardwareOrders '" & HardwareCustomer & "'"
+                "exec sp_SelectClientInvoice '" & HardwareCustomer & "'"
             GridViewHardware.DataSource = SqlDataSourceHardware
 
             GridViewHardware.DataBind()

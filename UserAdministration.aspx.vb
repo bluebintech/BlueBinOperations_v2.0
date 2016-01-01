@@ -223,6 +223,10 @@ Partial Class UserAdministration
         End If
 
         GridViewUsers.DataBind()
+        GridViewRoles.DataBind()
+        GridViewOperations.DataBind()
+        GridViewRoleOperations.DataBind()
+        GridViewUserOperations.DataBind()
     End Sub
 
     Protected Sub GridViewRoles_RowCommand(ByVal sender As System.Object, ByVal e As System.Web.UI.WebControls.GridViewCommandEventArgs)
@@ -236,7 +240,11 @@ Partial Class UserAdministration
             conn.Open()
             cmd.ExecuteNonQuery()
             conn.Close()
+            GridViewUsers.DataBind()
             GridViewRoles.DataBind()
+            GridViewOperations.DataBind()
+            GridViewRoleOperations.DataBind()
+            GridViewUserOperations.DataBind()
         End If
     End Sub
 
@@ -252,7 +260,11 @@ Partial Class UserAdministration
             conn.Open()
             cmd.ExecuteNonQuery()
             conn.Close()
+            GridViewUsers.DataBind()
+            GridViewRoles.DataBind()
             GridViewOperations.DataBind()
+            GridViewRoleOperations.DataBind()
+            GridViewUserOperations.DataBind()
         End If
     End Sub
 
@@ -268,7 +280,11 @@ Partial Class UserAdministration
             conn.Open()
             cmd.ExecuteNonQuery()
             conn.Close()
+            GridViewUsers.DataBind()
+            GridViewRoles.DataBind()
+            GridViewOperations.DataBind()
             GridViewRoleOperations.DataBind()
+            GridViewUserOperations.DataBind()
         End If
     End Sub
 
@@ -284,6 +300,10 @@ Partial Class UserAdministration
             conn.Open()
             cmd.ExecuteNonQuery()
             conn.Close()
+            GridViewUsers.DataBind()
+            GridViewRoles.DataBind()
+            GridViewOperations.DataBind()
+            GridViewRoleOperations.DataBind()
             GridViewUserOperations.DataBind()
         End If
     End Sub

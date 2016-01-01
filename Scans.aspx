@@ -16,11 +16,12 @@
             <Columns>
             <asp:CommandField ShowSelectButton="True" ButtonType="Button" />
                         <asp:BoundField DataField="ScanBatchID" HeaderText="ScanBatchID" SortExpression="ScanBatchID" Visible="False" />
-                        <asp:BoundField DataField="LocationID" HeaderText="LocationID" SortExpression="LocationID" />
-                        <asp:BoundField DataField="LocationName" HeaderText="LocationName" SortExpression="LocationName" />
-                        <asp:BoundField DataField="BinsScanned" HeaderText="BinsScanned" SortExpression="BinsScanned" />
-                        <asp:BoundField DataField="DateScanned" HeaderText="DateScanned" SortExpression="DateScanned" DataFormatString="{0:g}"  />
-                        <asp:BoundField DataField="Extracted" HeaderText="Extracted" SortExpression="Extracted" Visible="False" />
+                        <asp:BoundField DataField="LocationID" HeaderText="Location ID" SortExpression="LocationID" />
+                        <asp:BoundField DataField="LocationName" HeaderText="Location Name" SortExpression="LocationName" />
+                        <asp:BoundField DataField="BinsScanned" HeaderText="Bins Scanned" SortExpression="BinsScanned" />
+                        <asp:BoundField DataField="DateScanned" HeaderText="Date Scanned" SortExpression="DateScanned" DataFormatString="{0:g}"  />
+                        <asp:BoundField DataField="ScannedBy" HeaderText="Scanned By" SortExpression="ScannedBy" />
+                <asp:BoundField DataField="Extracted" HeaderText="Extracted" SortExpression="Extracted" Visible="False" />
             </Columns>
             <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
             <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />

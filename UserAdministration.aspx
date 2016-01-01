@@ -30,7 +30,7 @@
             <p> 
                 
             
-
+<%-- UsersGridview --%>  
         <asp:GridView ID="GridViewUsers"  OnRowCommand="GridViewUsers_RowCommand" CssClass="GridViewitem" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" DataSourceID="UsersDataSource" AutoGenerateColumns="False" DataKeyNames="BlueBinUserID" AllowSorting="True" AllowPaging="True" ShowFooter="True">
         <AlternatingRowStyle BackColor="#DCDCDC"></AlternatingRowStyle>
 
@@ -208,7 +208,7 @@
         </p>
         </asp:TableCell> </asp:TableRow>
 
-
+<%-- RolesGridview --%>  
 
     <asp:TableRow><asp:TableCell><asp:Label runat="server" id="AddUserErrorLabel"></asp:Label></asp:TableCell></asp:TableRow>
 <asp:TableRow>
@@ -261,6 +261,7 @@
 
 </asp:TableCell> </asp:TableRow>
 
+<%-- OperationsGridview --%>  
 
     <asp:TableRow><asp:TableCell><asp:Label runat="server" id="Label1"></asp:Label></asp:TableCell></asp:TableRow>
 <asp:TableRow>
@@ -325,6 +326,7 @@
 
 </asp:TableCell> </asp:TableRow>
     
+<%-- Role OperationsGridview --%>  
 
     <asp:TableRow><asp:TableCell><asp:Label runat="server" id="Label2"></asp:Label></asp:TableCell></asp:TableRow>
 <asp:TableRow>
@@ -392,6 +394,7 @@
 </asp:TableCell></asp:TableRow>
 
    
+<%-- UserOperationsGridview --%>  
 
     <asp:TableRow><asp:TableCell><asp:Label runat="server" id="Label3"></asp:Label></asp:TableCell></asp:TableRow>
 <asp:TableRow>

@@ -1,13 +1,23 @@
 ﻿<%@ Page Title="Scan Lines" Language="VB" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="ScanLines.aspx.vb" Inherits="ScanLines" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
     <script>
-        function document.onkeydown()
-        {
-            if(window.event)
-                var keycode = window.event.KeyCode;
-            if(keycode==116)
-                __doPostBack('ScanSubmit','')
+        function swallowEnter(){
+            if(event.keyCode==13){
+                event.keyCode = null;
+                return;
+            }
+        }
+    </script>
+    <script>
+        function handleKeyPress(evt) {
+            var nbr;
+            if (window.Event) nbr = evt.which;
+            else nbr = event.keyCode;
+            if (nbr == 113) {
+                document.SubmitScan.focus();
+            }
         }
     </script>
     <asp:panel runat ="server">
@@ -92,7 +102,7 @@
                     <asp:RequiredFieldValidator Display="Dynamic" ID="RequiredFieldValidator2" ControlToValidate="Item1TB" runat="server" ForeColor="Red" ErrorMessage="Required" Font-Size="X-Small"></asp:RequiredFieldValidator>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty1TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty1TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -104,7 +114,7 @@
                     <asp:TextBox ID="Item2TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty2TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty2TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -116,7 +126,7 @@
                     <asp:TextBox ID="Item3TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty3TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty3TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>
            <asp:TableRow Height="5"></asp:TableRow>
@@ -128,7 +138,7 @@
                     <asp:TextBox ID="Item4TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty4TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty4TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -140,7 +150,7 @@
                     <asp:TextBox ID="Item5TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty5TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty5TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -152,7 +162,7 @@
                     <asp:TextBox ID="Item6TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty6TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty6TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>
 	           <asp:TableRow Height="5"></asp:TableRow>
@@ -164,7 +174,7 @@
                     <asp:TextBox ID="Item7TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty7TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty7TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -176,7 +186,7 @@
                     <asp:TextBox ID="Item8TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty8TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty8TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -188,7 +198,7 @@
                     <asp:TextBox ID="Item9TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty9TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty9TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>  
 	       <asp:TableRow Height="5"></asp:TableRow>
@@ -200,7 +210,7 @@
                     <asp:TextBox ID="Item10TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty10TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty10TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>
             <asp:TableRow Height="5"></asp:TableRow>
@@ -212,7 +222,7 @@
                     <asp:TextBox ID="Item11TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty11TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty11TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -224,7 +234,7 @@
                     <asp:TextBox ID="Item12TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty12TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty12TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -236,7 +246,7 @@
                     <asp:TextBox ID="Item13TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty13TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty13TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>
            <asp:TableRow Height="5"></asp:TableRow>
@@ -248,7 +258,7 @@
                     <asp:TextBox ID="Item14TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty14TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty14TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -260,7 +270,7 @@
                     <asp:TextBox ID="Item15TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty15TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty15TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -272,7 +282,7 @@
                     <asp:TextBox ID="Item16TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty16TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty16TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>
 	           <asp:TableRow Height="5"></asp:TableRow>
@@ -284,7 +294,7 @@
                     <asp:TextBox ID="Item17TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty17TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty17TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -296,7 +306,7 @@
                     <asp:TextBox ID="Item18TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty18TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty18TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -308,7 +318,7 @@
                     <asp:TextBox ID="Item19TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty19TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty19TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>  
 	       <asp:TableRow Height="5"></asp:TableRow>
@@ -320,7 +330,7 @@
                     <asp:TextBox ID="Item20TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty20TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty20TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
             <asp:TableRow Height="5"></asp:TableRow>
@@ -332,7 +342,7 @@
                     <asp:TextBox ID="Item21TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty21TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty21TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -344,7 +354,7 @@
                     <asp:TextBox ID="Item22TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty22TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty22TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -356,7 +366,7 @@
                     <asp:TextBox ID="Item23TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty23TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty23TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>
            <asp:TableRow Height="5"></asp:TableRow>
@@ -368,7 +378,7 @@
                     <asp:TextBox ID="Item24TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty24TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty24TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -380,7 +390,7 @@
                     <asp:TextBox ID="Item25TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty25TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty25TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -392,7 +402,7 @@
                     <asp:TextBox ID="Item26TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty26TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty26TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>
 	           <asp:TableRow Height="5"></asp:TableRow>
@@ -404,7 +414,7 @@
                     <asp:TextBox ID="Item27TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty27TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty27TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -416,7 +426,7 @@
                     <asp:TextBox ID="Item28TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty28TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty28TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -428,7 +438,7 @@
                     <asp:TextBox ID="Item29TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty29TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty29TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>  
 	       <asp:TableRow Height="5"></asp:TableRow>
@@ -440,7 +450,7 @@
                     <asp:TextBox ID="Item30TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty30TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty30TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>             
         </asp:Table>
@@ -454,10 +464,10 @@
                 <asp:TableHeaderCell Width="20px">
                 </asp:TableHeaderCell>
                 <asp:TableHeaderCell Width="250px">
-                    <asp:Label ID="LabelItemMC" runat="server" Text="Item"></asp:Label>
+                    <asp:Label ID="LabelItemMC" runat="server" Text="Item" onkeydown = "return (event.keyCode!=13)"></asp:Label>
                 </asp:TableHeaderCell>
                 <asp:TableHeaderCell Width="80px">
-                    <asp:Label ID="LabelQuantityMC" runat="server" Text="Quantity"></asp:Label>
+                    <asp:Label ID="LabelQuantityMC" runat="server" Text="Quantity" onkeydown = "return (event.keyCode!=13)"></asp:Label>
                  </asp:TableHeaderCell>
             </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -469,7 +479,7 @@
                     <asp:TextBox ID="Item31TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty31TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty31TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -481,7 +491,7 @@
                     <asp:TextBox ID="Item32TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty32TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty32TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -493,7 +503,7 @@
                     <asp:TextBox ID="Item33TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty33TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty33TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>
            <asp:TableRow Height="5"></asp:TableRow>
@@ -505,7 +515,7 @@
                     <asp:TextBox ID="Item34TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty34TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty34TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -517,7 +527,7 @@
                     <asp:TextBox ID="Item35TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty35TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty35TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -529,7 +539,7 @@
                     <asp:TextBox ID="Item36TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty36TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty36TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>
 	           <asp:TableRow Height="5"></asp:TableRow>
@@ -541,7 +551,7 @@
                     <asp:TextBox ID="Item37TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty37TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty37TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -553,7 +563,7 @@
                     <asp:TextBox ID="Item38TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty38TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty38TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -565,7 +575,7 @@
                     <asp:TextBox ID="Item39TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty39TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty39TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>  
 	       <asp:TableRow Height="5"></asp:TableRow>
@@ -577,7 +587,7 @@
                     <asp:TextBox ID="Item40TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty40TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty40TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>
 	        <asp:TableRow Height="5"></asp:TableRow> 
@@ -589,7 +599,7 @@
                     <asp:TextBox ID="Item41TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty41TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty41TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -601,7 +611,7 @@
                     <asp:TextBox ID="Item42TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty42TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty42TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -613,7 +623,7 @@
                     <asp:TextBox ID="Item43TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty43TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty43TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>
            <asp:TableRow Height="5"></asp:TableRow>
@@ -625,7 +635,7 @@
                     <asp:TextBox ID="Item44TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty44TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty44TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -637,7 +647,7 @@
                     <asp:TextBox ID="Item45TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty45TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty45TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -649,7 +659,7 @@
                     <asp:TextBox ID="Item46TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty46TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty46TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>
 	           <asp:TableRow Height="5"></asp:TableRow>
@@ -661,7 +671,7 @@
                     <asp:TextBox ID="Item47TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty47TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty47TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -673,7 +683,7 @@
                     <asp:TextBox ID="Item48TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty48TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty48TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -685,7 +695,7 @@
                     <asp:TextBox ID="Item49TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty49TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty49TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>  
 	       <asp:TableRow Height="5"></asp:TableRow>
@@ -697,7 +707,7 @@
                     <asp:TextBox ID="Item50TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty50TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty50TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
             <asp:TableRow Height="5"></asp:TableRow>
@@ -709,7 +719,7 @@
                     <asp:TextBox ID="Item51TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty51TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty51TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -721,7 +731,7 @@
                     <asp:TextBox ID="Item52TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty52TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty52TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -733,7 +743,7 @@
                     <asp:TextBox ID="Item53TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty53TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty53TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>
            <asp:TableRow Height="5"></asp:TableRow>
@@ -745,7 +755,7 @@
                     <asp:TextBox ID="Item54TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty54TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty54TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -757,7 +767,7 @@
                     <asp:TextBox ID="Item55TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty55TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty55TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -769,7 +779,7 @@
                     <asp:TextBox ID="Item56TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty56TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty56TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>
 	           <asp:TableRow Height="5"></asp:TableRow>
@@ -781,7 +791,7 @@
                     <asp:TextBox ID="Item57TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty57TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty57TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -793,7 +803,7 @@
                     <asp:TextBox ID="Item58TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty58TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty58TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -805,7 +815,7 @@
                     <asp:TextBox ID="Item59TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty59TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty59TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>  
 	       <asp:TableRow Height="5"></asp:TableRow>
@@ -817,7 +827,7 @@
                     <asp:TextBox ID="Item60TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty60TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty60TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>              
         </asp:Table>
@@ -845,7 +855,7 @@
                     <asp:TextBox ID="Item61TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty61TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty61TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -857,7 +867,7 @@
                     <asp:TextBox ID="Item62TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty62TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty62TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -869,7 +879,7 @@
                     <asp:TextBox ID="Item63TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty63TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty63TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>
            <asp:TableRow Height="5"></asp:TableRow>
@@ -881,7 +891,7 @@
                     <asp:TextBox ID="Item64TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty64TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty64TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -893,7 +903,7 @@
                     <asp:TextBox ID="Item65TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty65TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty65TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -905,7 +915,7 @@
                     <asp:TextBox ID="Item66TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty66TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty66TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>
 	           <asp:TableRow Height="5"></asp:TableRow>
@@ -917,7 +927,7 @@
                     <asp:TextBox ID="Item67TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty67TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty67TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -929,7 +939,7 @@
                     <asp:TextBox ID="Item68TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty68TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty68TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -941,7 +951,7 @@
                     <asp:TextBox ID="Item69TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty69TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty69TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>  
 	       <asp:TableRow Height="5"></asp:TableRow>
@@ -953,7 +963,7 @@
                     <asp:TextBox ID="Item70TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty70TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty70TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>
 	        <asp:TableRow Height="5"></asp:TableRow> 
@@ -965,7 +975,7 @@
                     <asp:TextBox ID="Item71TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty71TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty71TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -977,7 +987,7 @@
                     <asp:TextBox ID="Item72TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty72TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty72TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -989,7 +999,7 @@
                     <asp:TextBox ID="Item73TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty73TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty73TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>
            <asp:TableRow Height="5"></asp:TableRow>
@@ -1001,7 +1011,7 @@
                     <asp:TextBox ID="Item74TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty74TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty74TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -1013,7 +1023,7 @@
                     <asp:TextBox ID="Item75TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty75TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty75TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -1025,7 +1035,7 @@
                     <asp:TextBox ID="Item76TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty76TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty76TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>
 	           <asp:TableRow Height="5"></asp:TableRow>
@@ -1037,7 +1047,7 @@
                     <asp:TextBox ID="Item77TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty77TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty77TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -1049,7 +1059,7 @@
                     <asp:TextBox ID="Item78TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty78TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty78TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -1061,7 +1071,7 @@
                     <asp:TextBox ID="Item79TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty79TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty79TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>  
 	       <asp:TableRow Height="5"></asp:TableRow>
@@ -1073,7 +1083,7 @@
                     <asp:TextBox ID="Item80TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty80TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty80TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
             <asp:TableRow Height="5"></asp:TableRow>
@@ -1085,7 +1095,7 @@
                     <asp:TextBox ID="Item81TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty81TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty81TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -1097,7 +1107,7 @@
                     <asp:TextBox ID="Item82TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty82TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty82TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -1109,7 +1119,7 @@
                     <asp:TextBox ID="Item83TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty83TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty83TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>
            <asp:TableRow Height="5"></asp:TableRow>
@@ -1121,7 +1131,7 @@
                     <asp:TextBox ID="Item84TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty84TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty84TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -1133,7 +1143,7 @@
                     <asp:TextBox ID="Item85TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty85TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty85TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -1145,7 +1155,7 @@
                     <asp:TextBox ID="Item86TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty86TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty86TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>
 	           <asp:TableRow Height="5"></asp:TableRow>
@@ -1157,7 +1167,7 @@
                     <asp:TextBox ID="Item87TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty87TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty87TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -1169,7 +1179,7 @@
                     <asp:TextBox ID="Item88TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty88TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty88TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow> 
            <asp:TableRow Height="5"></asp:TableRow>
@@ -1181,7 +1191,7 @@
                     <asp:TextBox ID="Item89TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty89TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty89TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>  
 	       <asp:TableRow Height="5"></asp:TableRow>
@@ -1193,7 +1203,7 @@
                     <asp:TextBox ID="Item90TB" runat="server"  Width="225px"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell Width="80px">
-                    <asp:TextBox ID="Qty90TB" runat="server"  Width="80px"></asp:TextBox>
+                    <asp:TextBox ID="Qty90TB" runat="server"  Width="80px" onkeydown = "return (event.keyCode!=13)"></asp:TextBox>
                  </asp:TableCell>
            </asp:TableRow>              
         </asp:Table>
@@ -1212,7 +1222,7 @@
 
 <asp:TableRow Height="10"></asp:TableRow>
  <asp:TableRow>
-     <asp:TableCell><asp:Button ID="ScanSubmit" runat="server" Text="Submit Batch"  OnClientClick="return confirm('Are you sure you want to submit this scanning?');" />&nbsp;
+     <asp:TableCell><asp:Button ID="ScanSubmit" runat="server" Text="Submit Batch"  OnClientClick="return confirm('Are you sure you want to submit this scanning?');" AccessKey="@" />&nbsp;
      <asp:Button ID="ScanningCancel" runat="server" Text="Cancel" /><br /></asp:TableCell>
  </asp:TableRow>       
       
