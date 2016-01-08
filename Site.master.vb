@@ -43,6 +43,10 @@ Partial Public Class SiteMaster
             Dim ADMINRESOURCES As String
             Dim ADMINTRAINING As String
             Dim MENUDashboard As String
+            Dim MENUDashboardSC As String
+            Dim MENUDashboardSrc As String
+            Dim MENUDashboardOps As String
+            Dim MENUDashboardHB As String
             Dim MENUQCN As String
             Dim MENUGemba As String
             Dim MENUHardware As String
@@ -95,6 +99,22 @@ Partial Public Class SiteMaster
                     'MENU-Dashboard
                     cmdmenu.Parameters.AddWithValue("@ConfigName", "MENU-Dashboard")
                     MENUDashboard = Convert.ToString(cmdmenu.ExecuteScalar())
+                    cmdmenu.Parameters.Clear()
+                    'MENU-Dashboard-SupplyChain
+                    cmdmenu.Parameters.AddWithValue("@ConfigName", "MENU-Dashboard-SupplyChain")
+                    MENUDashboardSC = Convert.ToString(cmdmenu.ExecuteScalar())
+                    cmdmenu.Parameters.Clear()
+                    'MENU-Dashboard-Sourcing
+                    cmdmenu.Parameters.AddWithValue("@ConfigName", "MENU-Dashboard-Sourcing")
+                    MENUDashboardSrc = Convert.ToString(cmdmenu.ExecuteScalar())
+                    cmdmenu.Parameters.Clear()
+                    'MENU-Dashboard-Ops
+                    cmdmenu.Parameters.AddWithValue("@ConfigName", "MENU-Dashboard-Ops")
+                    MENUDashboardOps = Convert.ToString(cmdmenu.ExecuteScalar())
+                    cmdmenu.Parameters.Clear()
+                    'MENU-Dashboard-HuddleBoard
+                    cmdmenu.Parameters.AddWithValue("@ConfigName", "MENU-Dashboard-HuddleBoard")
+                    MENUDashboardHB = Convert.ToString(cmdmenu.ExecuteScalar())
                     cmdmenu.Parameters.Clear()
                     'MENU-QCN
                     cmdmenu.Parameters.AddWithValue("@ConfigName", "MENU-QCN")
@@ -157,6 +177,30 @@ Partial Public Class SiteMaster
             Else
                 DashboardDD.Visible = False
             End If
+
+            If MENUDashboardHB = "Yes" Then
+                HuddleBoardDD.Visible = True
+            Else
+                HuddleBoardDD.Visible = False
+            End If
+
+            'If MENUDashboardSC = "Yes" Then
+            'DashboardDD.Visible = True
+            'Else
+            'DashboardDD.Visible = False
+            'End If
+
+            'If MENUDashboardSrc = "Yes" Then
+            'DashboardDD.Visible = True
+            'Else
+            'DashboardDD.Visible = False
+            'End If
+
+            'If MENUDashboardOps = "Yes" Then
+            'DashboardDD.Visible = True
+            'Else
+            'DashboardDD.Visible = False
+            'End If
 
             If MENUQCN = "Yes" Then
                 QCNDD.Visible = True

@@ -18,6 +18,12 @@ Partial Class Gemba
         Response.Redirect("~/GembaAuditNodeForm")
     End Sub
 
+    Protected Sub GembaDashboardB_Click(sender As Object, e As EventArgs) Handles GembaDashboardB.Click
+        'Response.Redirect("~/QCNReportViewer")
+        Dim url As String = "GembaReportViewer.aspx"
+        Response.Write("<script type='text/javascript'>window.open('" + url + "');</script>")
+    End Sub
+
     Protected Sub OnPageIndexChanging(sender As Object, e As GridViewPageEventArgs)
         GembaAuditNodeGridView.PageIndex = e.NewPageIndex
         GembaAuditNodeGridView.DataBind()

@@ -28,7 +28,7 @@
           <ul class="nav navbar-nav">
 		    <li><a runat="server" href="~/">Home</a></li>
             <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Supply Chain <span class="caret"></span></a>
+              <a class="dropdown-toggle" runat="server" data-toggle="dropdown" href="#" id="themes">Supply Chain <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="themes">
 							<li><a href="#" onClick="switchView('Daily Management Dashboard')">Daily Management Dashboard</a></li>
                             <li class="divider"></li>
@@ -48,21 +48,23 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download2">Operational Performance <span class="caret"></span></a>
+              <a class="dropdown-toggle" runat="server" data-toggle="dropdown" href="#" id="download2">Operational Performance <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="download2">
-                			<li><a href="#" onClick="switchView('Digital Huddle Board')">Digital Huddle Board*</a></li>
-                            <li class="divider"></li>
+                			<li><a href="#" runat="server" onClick="switchView('Huddle Board')" id="HuddleBoardDD">Digital Huddle Board</a></li>
+                            <li class="divider" runat="server" id="HBDivider"></li>
                             <li><a href="#" onClick="switchView('Supply Spend')">Supply Spend</a></li>
                             <li><a href="#" onClick="switchView('Stat Calls')">Stat Calls</a></li>
                             <li><a href="#" onClick="switchView('Warehouse Value')">Warehouse Volume</a></li>
                             <li><a href="#" onClick="switchView('Warehouse Size')">Warehouse Size</a></li>
                             <li><a href="#" onClick="switchView('Pick Line Volume')">Pick Line Volume</a></li>
                             <li><a href="#" onClick="switchView('Overall Line Volume')">Overall Line Volume</a></li>
-                            <li><a href="#" onClick="switchView('QCN Dashboard')">QCN Tracker</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" onClick="switchView('QCN Dashboard')">QCN Dashboard</a></li>
+                            <li><a href="#" onClick="switchView('Gemba Dashboard')">Gemba Dashboard</a></li>
               </ul>
             </li>
             <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download3">Strategic Sourcing <span class="caret"></span></a>
+              <a class="dropdown-toggle" runat="server" data-toggle="dropdown" href="#" id="download3">Strategic Sourcing <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="download3">
                 			<li><a href="#" onClick="switchView('Buyer Performance Dashboard')">Buyer Performance</a></li>
                             <li><a href="#" onClick="switchView('Specials Dashboard')">Special Item Volume</a></li>
@@ -73,8 +75,7 @@
                             <li class="divider"></li>
                             <li><a href="#" onClick="switchView('Open PO Report')">Open PO Report</a></li>
                             <li class="divider"></li>
-                            <li><a href="#" onClick="switchView('Cost Variance Report')">Cost Variance*</a></li>
-                            <li><a href="#" onClick="switchView('Department Cost')">Department Cost*</a></li>
+                            <li><a href="#" onClick="switchView('Cost Variance Dashboard')">Cost Variance</a></li>
                             
                             
               </ul>

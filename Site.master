@@ -57,7 +57,15 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/Dashboard" id="DashboardDD">Dashboard</a></li>
+                        <li class="dropdown">
+                                  <a class="dropdown-toggle" runat="server" data-toggle="dropdown" id="DashboardDD">Dashboard<span class="caret"></span></a>
+                                  <ul class="dropdown-menu" aria-labelledby="themes">
+							                    <li><a runat="server" href="~/Dashboard" id="MainDashboardDD">Main Dashboard</a></li>
+                                                <li><a runat="server" href="~/HuddleBoard" id="HuddleBoardDD" target ="_blank">Digital Huddle Board</a></li>
+                                                     
+                                  </ul>
+                                </li>
+                       
                         <li class="dropdown">
                                   <a class="dropdown-toggle" runat="server" data-toggle="dropdown" id="QCNDD">QCN<span class="caret"></span></a>
                                   <ul class="dropdown-menu" aria-labelledby="themes">

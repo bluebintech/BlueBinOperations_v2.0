@@ -63,7 +63,7 @@
      <asp:SqlDataSource runat="server" ID="QCNLocationDS" ConnectionString='<%$ ConnectionStrings:Site_ConnectionString %>' SelectCommand="SELECT DISTINCT b.LocationName FROM qcn.QCN a inner join bluebin.[DimLocation] b on rtrim(a.LocationID) = rtrim(b.LocationID) WHERE b.BlueBinFlag= 1 group by b.LocationName order by 1"></asp:SqlDataSource>
 &nbsp;<asp:Button ID="SearchButton"  runat="server" Text="Search" /> &nbsp;&nbsp; 
     </p>
-    <p><asp:CheckBox ID="CompletedCB" runat="server" Text="Include Completed?" />
+    <p><asp:CheckBox ID="CompletedCB" runat="server" Text="Include Completed and Rejected?" />
     </p>
 
 

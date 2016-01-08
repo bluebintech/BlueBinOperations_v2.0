@@ -78,6 +78,15 @@
                     </ItemTemplate>
                 </asp:TemplateField>
 
+                <asp:TemplateField HeaderText="Trained?" InsertVisible="False" SortExpression="Title">
+                    <EditItemTemplate>
+                        <asp:Label runat="server" Text='<%# Bind("FullyTrained") %>' ID="LabelTitleE"></asp:Label>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label runat="server" Text='<%# Bind("FullyTrained") %>' ID="LabelTitleI"></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+
                 <asp:TemplateField>
                 <HeaderTemplate>
                     <asp:HyperLink runat="server" NavigateUrl="~/BlueBinDocuments/3000 - Replenishing BlueBin Technology Nodes.pdf" target="_blank" Text="Form3000"> </asp:HyperLink>

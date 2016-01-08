@@ -21,7 +21,7 @@
             </p>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4" id="qcndiv" runat="server">
             <h2>QCN</h2>
             <p>
                 You can easily create, track, and store QCNs in this easy to use module.</p>
@@ -29,7 +29,7 @@
                 <a class="btn btn-default" runat="server" href="~/QCN">Click Here &raquo;</a>
             </p>
         </div>
-       <div class="col-md-4">
+       <div class="col-md-4" id ="gembadiv" runat="server">
             <h2>Gemba Auditing</h2>
             <p>
                 You can easily perform Gemba Audits on Nodes and your Staging Area and store them for future reference in this easy to use module.</p>
@@ -38,7 +38,8 @@
             </p>
         </div>
          </div>
-    <div class="row">        <div class="col-md-4">
+    <div class="row">        
+        <div class="col-md-4" id="hardwarediv" runat="server">
             <h2>Hardware Orders</h2>
             <p>
                 You can easily place orders for more hardware that will be routed to the BlueBin Operations team.
@@ -48,7 +49,7 @@
             </p>
         </div>
  
-      <div class="col-md-4">
+      <div class="col-md-4" runat="server">
             <h2>Operational Procedures</h2>
             <p>
                 Review Standard Operating Procedures and Documentation for your BlueBin Solution.
@@ -58,7 +59,7 @@
             </p>
        
     </div>  
-        <div class="col-md-4">
+        <div class="col-md-4" id="scanningdiv" runat="server">
             <h2>Scanning</h2>
             <p>
                 You can easily scan Bins into the Database for your BlueBin Solution and tracking in the BlueBin Dashboard.

@@ -11,6 +11,7 @@
     
     <p>
         <asp:Button ID="GembaAuditNodeFormButton" runat="server"  class="btn btn-primary btn-lg" Text="New Gemba Audit" /> &nbsp; 
+        <asp:Button ID="GembaDashboardB" class="btn btn-primary btn-lg" runat="server" Text="Gemba Dashboard" />
     </p>
     <p>
  

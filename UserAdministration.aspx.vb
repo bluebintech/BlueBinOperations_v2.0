@@ -13,6 +13,7 @@ Partial Class UserAdministration
     Protected Sub UsersB_Click(sender As Object, e As EventArgs) Handles UsersB.Click
         GridViewUsers.Visible = True
         SearchTable.Visible = True
+        ExportUsers.Visible = True
         GridViewRoles.Visible = False
         GridViewUsers.DataBind()
         hiddenUsers.Visible = True
@@ -28,6 +29,7 @@ Partial Class UserAdministration
     Protected Sub RolesB_Click(sender As Object, e As EventArgs) Handles RolesB.Click
         GridViewUsers.Visible = False
         SearchTable.Visible = False
+        ExportUsers.Visible = False
         GridViewRoles.Visible = True
         GridViewRoles.DataBind()
         hiddenRoles.Visible = True
@@ -43,6 +45,7 @@ Partial Class UserAdministration
     Protected Sub OperationsB_Click(sender As Object, e As EventArgs) Handles OperationsB.Click
         GridViewUsers.Visible = False
         SearchTable.Visible = False
+        ExportUsers.Visible = False
         GridViewRoles.Visible = False
         GridViewOperations.DataBind()
         hiddenRoles.Visible = False
@@ -58,6 +61,7 @@ Partial Class UserAdministration
     Protected Sub RoleOperationsB_Click(sender As Object, e As EventArgs) Handles RoleOperationsB.Click
         GridViewUsers.Visible = False
         SearchTable.Visible = False
+        ExportUsers.Visible = False
         GridViewRoles.Visible = False
         GridViewOperations.DataBind()
         hiddenRoles.Visible = False
@@ -73,6 +77,7 @@ Partial Class UserAdministration
     Protected Sub UserOperationsB_Click(sender As Object, e As EventArgs) Handles UserOperationsB.Click
         GridViewUsers.Visible = False
         SearchTable.Visible = True
+        ExportUsers.Visible = False
         GridViewRoles.Visible = False
         GridViewOperations.DataBind()
         hiddenRoles.Visible = False
@@ -90,6 +95,7 @@ Partial Class UserAdministration
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs)
         If Not Page.IsPostBack() Then
             GridViewUsers.DataBind()
+            ExportUsers.Visible = False
             GridViewRoles.DataBind()
             GridViewOperations.DataBind()
             GridViewRoleOperations.DataBind()
@@ -307,6 +313,51 @@ Partial Class UserAdministration
             GridViewUserOperations.DataBind()
         End If
     End Sub
+    Protected Sub ExportToExcelUsers(sender As Object, e As EventArgs)
+        Response.Clear()
+        Response.Buffer = True
+        Response.AddHeader("content-disposition", "attachment;filename=UsersExport.xls")
+        Response.Charset = ""
+        Response.ContentType = "application/vnd.ms-excel"
+        Using sw As New StringWriter()
+            Dim hw As New HtmlTextWriter(sw)
 
+            'To Export all pages
+            GridViewUsers.AllowPaging = False
+            GridViewUsers.DataBind()
+            GridViewUsers.HeaderRow.BackColor = Color.White
+            GridViewUsers.HeaderRow.Cells(0).Visible = False
+            GridViewUsers.FooterRow.Visible = False
+
+            For Each cell As TableCell In GridViewUsers.HeaderRow.Cells
+                cell.BackColor = GridViewUsers.HeaderStyle.BackColor
+            Next
+            For Each row As GridViewRow In GridViewUsers.Rows
+                row.BackColor = Color.White
+                row.Cells(0).Visible = False
+                For Each cell As TableCell In row.Cells
+                    If row.RowIndex Mod 2 = 0 Then
+                        cell.BackColor = GridViewUsers.AlternatingRowStyle.BackColor
+                    Else
+                        cell.BackColor = GridViewUsers.RowStyle.BackColor
+                    End If
+                    cell.CssClass = "textmode"
+
+
+                Next
+            Next
+
+            GridViewUsers.RenderControl(hw)
+            'style to format numbers to string
+            Dim style As String = "<style> .textmode { } </style>"
+            Response.Write(Regex.Replace(sw.ToString(), "(<a[^>]*>)|(</a>)", " ", RegexOptions.IgnoreCase))
+
+            Response.[End]()
+        End Using
+    End Sub
+
+    Public Overrides Sub VerifyRenderingInServerForm(control As Control)
+        ' Verifies that the control is rendered
+    End Sub
 
 End Class

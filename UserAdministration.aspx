@@ -470,7 +470,7 @@
 
     </asp:Table>
     
-
+<p><asp:ImageButton ID="ExportUsers" runat="Server" ImageUrl="~/img/ExportExcel.gif" OnClick="ExportToExcelUsers" Height="25px" CausesValidation="False" /></p>
 <p>
         <asp:SqlDataSource runat="server" ID="UsersDataSource" ConnectionString='<%$ ConnectionStrings:Site_ConnectionString %>' 
             DeleteCommand="Delete from bluebin.BlueBinUser where BlueBinUserID = @BlueBinUserID and UserLogin = @UserLogin" 
