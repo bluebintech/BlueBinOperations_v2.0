@@ -69,7 +69,7 @@
 
 
     <p>
-    <asp:GridView  CssClass="GridViewitem" ID="GridViewQCN"   OnPageIndexChanging="OnPageIndexChanging" OnRowDataBound="OnRowDataBound" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataSourceID="QCNDatasource" GridLines="Vertical" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="QCNID">
+    <asp:GridView  CssClass="GridViewitem" ID="GridViewQCN"   OnPageIndexChanging="OnPageIndexChanging" OnRowDataBound="OnRowDataBound" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataSourceID="QCNDatasource" GridLines="Vertical" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="QCNID" PageSize="30">
         <AlternatingRowStyle BackColor="#DCDCDC" />
         <Columns>
             <asp:HyperLinkField DataNavigateUrlFields="QCNID" DataNavigateUrlFormatString="QCNFormEdit.aspx?QCNID={0}" Text="Edit"></asp:HyperLinkField>
