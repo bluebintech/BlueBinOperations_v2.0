@@ -52,7 +52,7 @@
                     <asp:Label runat="server" Text='<%# Bind("BlueBinUserID") %>' ID="ITIDL"></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="Login" InsertVisible="False" SortExpression="UserLogin">
+            <asp:TemplateField HeaderText="Login/Email" InsertVisible="False" SortExpression="UserLogin">
                 <EditItemTemplate>
                     <asp:Label runat="server" Width="80px" Text='<%# Eval("UserLogin") %>' ID="ETUserLoginL"></asp:Label>
                 </EditItemTemplate>
@@ -111,6 +111,16 @@
                 <ItemTemplate>
                     <asp:Label runat="server" Text='<%# Bind("LastUpdated", "{0:d}") %>' ID="ITLastUpdatedL"></asp:Label>
                 </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Title" SortExpression="Title">
+                <EditItemTemplate>
+                    <asp:TextBox runat="server" Width="80px" Text='<%# Bind("Title") %>' ID="TitleTB"></asp:TextBox>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label runat="server" Text='<%# Bind("Title") %>' ID="ITTitleL"></asp:Label>
+                </ItemTemplate>
+                <FooterTemplate><asp:TextBox runat="server" Width="80px" ID="Title"></asp:TextBox></FooterTemplate>
+                <ItemStyle Wrap="False" Width="50px"></ItemStyle>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Role" SortExpression="RoleID">
                 <EditItemTemplate>
@@ -171,7 +181,7 @@
             
             
             
-            <asp:TemplateField HeaderText="Email" SortExpression="Email">
+            <asp:TemplateField HeaderText="Email" SortExpression="Email" Visible="False">
                 <EditItemTemplate>
                     <asp:TextBox runat="server" Width="80px" Text='<%# Bind("Email") %>' ID="EmailTB"></asp:TextBox>
                 </EditItemTemplate>
@@ -477,7 +487,7 @@
             SelectCommand="exec sp_SelectUsers @Name" 
             UpdateCommand="exec sp_EditUser @BlueBinUserID,@UserLogin,
             @FirstName,@LastName,@MiddleName,@Active,@Email,
-            @MustChangePassword,@PasswordExpires,@Password,@RoleName">
+            @MustChangePassword,@PasswordExpires,@Password,@RoleName,@Title">
         <DeleteParameters>
             <asp:Parameter Name="BlueBinUserID" Type="Int32"></asp:Parameter>
             <asp:Parameter Name="UserLogin" Type="String"></asp:Parameter>
@@ -492,6 +502,7 @@
             <asp:Parameter Name="PasswordExpires" Type="Int32"></asp:Parameter>
             <asp:Parameter Name="Password"></asp:Parameter>
             <asp:Parameter Name="RoleName" Type="String"></asp:Parameter>
+            <asp:Parameter Name="Title" Type="String"></asp:Parameter>
             <asp:Parameter Name="LastUpdated" Type="DateTime"></asp:Parameter>
             <asp:Parameter Name="BlueBinUserID" Type="Int32"></asp:Parameter>
             <asp:Parameter Name="UserLogin" Type="String"></asp:Parameter>

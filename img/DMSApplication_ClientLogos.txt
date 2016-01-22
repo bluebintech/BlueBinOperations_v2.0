@@ -25,6 +25,7 @@ Mercy_Logo.png
 Nemours_Logo.png
 NorthGeorgia_Logo.png
 RobertWood_Logo.png
+SCCA_Logo.png
 Sibley_Logo.png
 Stanford_Logo.png
 Steward_Logo.png

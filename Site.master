@@ -99,7 +99,7 @@
 
                     <ul class="nav navbar-nav navbar-right">
                                 <li class="dropdown">
-                                  <a class="dropdown-toggle" runat="server" data-toggle="dropdown" href="~/Administration" id="ADMINMENUDD">Administration<span class="caret"></span></a>
+                                  <a class="dropdown-toggle" runat="server" data-toggle="dropdown" href="~/Administration" id="ADMINMENUDD">Admin<span class="caret"></span></a>
                                   <ul class="dropdown-menu" aria-labelledby="themes">
 							                    <li><a runat="server" href="~/SiteConfiguration" onClick="switchView('Site Configuration')" id="ADMINCONFIGDD">Site Configuration</a></li>
                                                 <li><a runat="server" href="~/UserAdministration" onClick="switchView('UserAdministration')" id="ADMINUSERSDD">User Administration</a></li>

@@ -11,7 +11,7 @@
     </p>
     <p>
     <p>
-        <asp:GridView  CssClass="GridViewitem" ID="GridViewScan" OnPageIndexChanging="OnPageIndexChanging" DataKeyNames="ScanBatchID"  runat="server" AllowSorting="False" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" AllowPaging="True" RowStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center" CellSpacing="3" PageSize="20">
+        <asp:GridView  CssClass="GridViewitem" ID="GridViewScan" OnPageIndexChanging="OnPageIndexChanging" DataKeyNames="ScanBatchID"  runat="server" AllowSorting="False" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" AllowPaging="True" RowStyle-HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center" CellSpacing="3" PageSize="20" AllowCustomPaging="False">
             <AlternatingRowStyle BackColor="#DCDCDC" />
             <Columns>
             <asp:CommandField ShowSelectButton="True" ButtonType="Button" />

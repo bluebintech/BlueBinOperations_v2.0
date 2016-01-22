@@ -5,10 +5,10 @@ Partial Class Scans
     Inherits Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If Not Page.IsPostBack() Then
-            'Comment
+        'If Not Page.IsPostBack() Then
+        'Comment
 
-            Dim SqlDataSourceScan As New SqlDataSource()
+        Dim SqlDataSourceScan As New SqlDataSource()
             SqlDataSourceScan.ID = "Site_ConnectionString"
             Me.Page.Controls.Add(SqlDataSourceScan)
             SqlDataSourceScan.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings("Site_ConnectionString").ConnectionString
@@ -18,7 +18,7 @@ Partial Class Scans
 
             GridViewScan.DataBind()
             GridViewScanLines.DataBind()
-        End If
+        'End If
     End Sub
 
     Protected Sub Button1_Click(sender As Object, e As EventArgs) Handles NewScanBatch.Click

@@ -67,7 +67,7 @@
               <a class="dropdown-toggle" runat="server" data-toggle="dropdown" href="#" id="download3">Strategic Sourcing <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="download3">
                 			<li><a href="#" onClick="switchView('Buyer Performance Dashboard')">Buyer Performance</a></li>
-                            <li><a href="#" onClick="switchView('Specials Dashboard')">Special Item Volume</a></li>
+                            <li><a href="#" onClick="switchView('Specials Dashboard')">Special Performance</a></li>
                             <li><a href="#" onClick="switchView('Supplier Performance Dashboard')">Supplier Performance</a></li>
                             <li><a href="#" onClick="switchView('Sourcing Calendar')">Sourcing Calendar (Contracts Dashboard)</a></li>
                             <li><a href="#" onClick="switchView('Supplier Spend Manager')">Supplier Spend Manager</a></li>
@@ -75,7 +75,7 @@
                             <li class="divider"></li>
                             <li><a href="#" onClick="switchView('Open PO Report')">Open PO Report</a></li>
                             <li class="divider"></li>
-                            <li><a href="#" onClick="switchView('Cost Variance Dashboard')">Cost Variance</a></li>
+                            <li><a href="#" onClick="switchView('Cost Variance Dashboard')">Cost Variance Dashboard</a></li>
                             
                             
               </ul>

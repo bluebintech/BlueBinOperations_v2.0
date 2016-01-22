@@ -25,6 +25,12 @@ Partial Public Class QCN
         Response.Write("<script type='text/javascript'>window.open('" + url + "');</script>")
     End Sub
 
+    Private Sub QCNDataSource_Selecting(sender As Object,
+            e As SqlDataSourceSelectingEventArgs) Handles QCNDataSource.Selecting
+
+        e.Command.CommandTimeout = 1000
+    End Sub
+
 
 
 

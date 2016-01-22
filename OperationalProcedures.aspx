@@ -22,22 +22,9 @@
         <a runat="server" href="~/BlueBinDocuments/3010 - QCN Process.pdf" target="_blank">3010 - QCN Process</a><br />  
           </div>   
 
-    <h3>BlueBelt Certification</h3>
+    <h3>Belt Certification</h3>
         <div>   
-         <a runat="server" href="~/BlueBinDocuments/DMS-CERTIFICATION.ppsx" target="_blank">BlueBelt Certificate Overview</a><br />
-
-        </div>
-
-    <h3>Daily Management System</h3>
-        <div>   
-         
-         <a runat="server" href="~/BlueBinDocuments/DMS-CERTIFICATION.ppsx" target="_blank">BlueBelt Certificate Overview</a><br />         
-         <a runat="server" href="~/BlueBinDocuments/DMS-DAILY HUDDLES.ppsx" target="_blank">Daily Huddle Overview</a><br />
-         <a runat="server" href="~/BlueBinDocuments/DMS-GEMBA AUDITS.ppsx" target="_blank">Gemba Audit Overview</a><br />
-         <a runat="server" href="~/BlueBinDocuments/Huddle Board Instructions.pdf" target="_blank">Huddle Board Instructions</a><br />
-         <a runat="server" href="~/BlueBinDocuments/DMS-STAGE OPS.ppsx" target="_blank">Stage Operations Overview</a><br />
-         <a runat="server" href="~/BlueBinDocuments/LSW Training.ppsx" target="_blank">LSW Training</a><br />
-
+         <a runat="server" href="~/BlueBinDocuments/DMS-CERTIFICATION.ppsx" target="_blank">Belt Certificate Overview</a><br />
 
         </div>
     
